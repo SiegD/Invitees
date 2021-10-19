@@ -10,7 +10,10 @@
     <link rel="stylesheet" href="public/css/style.css">
     <title>Invitees - Startup yang terpaksa dan demi nilai</title>
 </head>
+
 <body>
+    <!--Overlay-->
+    
     <!--UPPERBODY-->
     <div class="">
         <h1>Gilbert & Anna</h1>
@@ -26,5 +29,14 @@
         <p class="nama pengantin">Anna Kusuma</p>
         <p>putra pertama dari Bpk. Bayu Kusuma dan Ibu Windy Gracia</p>
     </div>
+
+    <!--API-->
+    <div>
+    </div>
+
+    <!--RSVP-->
+    <!--Buku tamu-->
+    <!--Komen-->
+    <!--Footer-->
 </body>
 </html>

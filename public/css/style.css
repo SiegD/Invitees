@@ -1,0 +1,119 @@
+.navbar {
+    background-color: bisque;
+}
+
+.navbar .navbar-brand {
+    font-style: italic;
+    font-family: 'Brush Script MT', cursive;
+    font-size: 40px;
+}
+
+.carousel {
+    width: 100%;
+    margin: 3vh auto 6vh;
+    max-height: 50vh;
+    overflow: hidden;
+}
+
+.container {
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+}
+
+#content svg {
+    margin: 0 auto 20px;
+    display: block;
+    background: salmon;
+    overflow: hidden;
+    box-sizing: content-box;
+    width: 5vw;
+    height: 5vw;
+    padding: 1vw;
+    border-radius: 50%;
+}
+
+#content .btn {
+    background-color: burlywood;
+    color: white;
+    width: 15vh;
+    border-radius: 10px;
+    margin-bottom: 2vh;
+}
+
+#content .btn:hover {
+    border: 1px burlywood solid;
+    background-color: aliceblue;
+    color: black;
+}
+
+.row p {
+    margin-bottom: 5vh;
+}
+
+.harga {
+    border: solid 1px black;
+    min-height: 43vh;
+    border-radius: 15px;
+    margin-bottom: 2vh;
+}
+
+.harga .jenis-harga {
+    border-radius: 15px 15px 0 0;
+    border-bottom: 1px solid black;
+    padding: 2vw 2vw 1vh;
+}
+
+.harga #jh1 {
+    background-color: salmon;
+}
+
+.harga #jh2 {
+    background-color: burlywood;
+}
+
+.harga #jh3 {
+    background-color: blanchedalmond;
+}
+
+.harga ul {
+    list-style-type: none;
+    padding: 2vh 2vh 2vh;
+}
+
+#content ul {
+    list-style-type: none;
+}
+
+#content2 {
+    box-shadow: 1px 1px 8px #888888;
+    margin: auto;
+    margin-bottom: 1vh;
+    border-radius: 2%;
+    background-color: bisque;
+}
+
+#content2 svg {
+    margin: 2vh auto 1vh;
+    display: block;
+    overflow: hidden;
+    box-sizing: content-box;
+    width: 75px;
+    height: 75px;
+    padding: 1vw;
+    border-radius: 20%;
+}
+
+#content2 #kontak {
+    font-size: 2vh;
+    text-align: center;
+}
+
+.footer {
+    background-color: black;
+}
+
+@media only screen and (max-width: 600px) {
+    .harga {
+        min-height: 37vh;
+    }
+}
