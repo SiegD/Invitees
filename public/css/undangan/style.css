@@ -1,0 +1,153 @@
+/* .fotoawal {
+    min-height: 100vh;
+    padding: 0%;
+    overflow: hidden;
+    background: rgba(25, 64, 32, 0.2);
+}
+
+.fotoawal img {
+    width: 100%;
+    height: inherit;
+    position: absolute;
+    z-index: -1;
+} */
+
+
+
+.fotoawal {
+    width: 100%;
+    min-height: 30vh;
+    max-height: 100vh;
+    overflow: hidden;
+    padding: 0%;
+    position: relative;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0 60%, rgba(255, 255, 255, 1) 99.9% 100%);
+}
+
+.fotoawal img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    z-index: -1;
+    position: absolute;
+}
+
+.client {
+    display: flex;
+    align-items: center;
+    padding-top: 32%;
+    padding-bottom: 8%;
+    flex-direction: column;
+    font-size: calc(12px + 1.5vw);
+    color: aliceblue;
+}
+
+.client h1 {
+    font-size: calc(16px + 6vw);
+    font-family: "dancing script";
+}
+
+.client p {
+    font-size: calc(4px + 1vw);
+}
+
+.salam {
+    background-color: white;
+    padding: 5%;
+    text-align: center;
+
+}
+
+.salam .ucapan {
+    /* border: 1px solid black;
+    border-radius: 5vh; */
+    padding: 3%;
+}
+
+.salam .pembuka {
+    font-family: 'Roboto', sans-serif;
+    font-size: calc(1px + 2vw);
+    margin-bottom: 2vw;
+}
+
+.salam .nama-pengantin {
+    font-weight: bold;
+    font-family: "dancing script";
+    font-size: calc(12px + 4vw);
+}
+
+.salam .love {
+    font-size: 5vw;
+    width: 8vw;
+    border-radius: 50%;
+    background-color: blanchedalmond;
+    color: pink;
+    display: inline-table;
+}
+
+.salam p {
+    font-family: 'Roboto', sans-serif;
+    font-size: calc(6px + 1vw);
+}
+
+
+.salam .dan {
+    font-size: 7vw;
+    font-weight: bold;
+}
+
+.row {
+    /* border: 1px solid black; */
+    padding: 5%;
+}
+
+.row .isi-gl {
+    align-items: center;
+    text-align: center;
+    border-radius: 5%;
+    margin: 1vh 2vh 2vh;
+    margin-top: 3vh;
+}
+
+#event_detail {
+    background-color: bisque;
+    box-shadow: 4px 8px rgba(0, 0, 0, 0.2);
+    font-size: calc(8px + 2vw);
+    padding: 5%;
+}
+
+#event_detail h1 {
+    font-size: larger;
+}
+
+.row .galeri {
+    width: 100%;
+    border-radius: 5%;
+    box-shadow: 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.mapresepsi {
+    text-align: center;
+    padding: 5%;
+}
+
+.bungkusmap {
+    background-color: bisque;
+    padding: 2% 5% 3%;
+    border-radius: 2%;
+}
+
+.covermap {
+    overflow: hidden;
+    padding-bottom: 56.25%;
+    position: relative;
+    height: 0;
+}
+
+.covermap iframe {
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
