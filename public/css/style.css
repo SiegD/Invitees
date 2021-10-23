@@ -13,6 +13,8 @@
     margin: 3vh auto 6vh;
     max-height: 50vh;
     overflow: hidden;
+    border-radius: 2%;
+    box-shadow: 3px 5px #888888;
 }
 
 .container {
@@ -116,4 +118,25 @@
     .harga {
         min-height: 37vh;
     }
+}
+
+.form-signin .form-floating:focus-within {
+    z-index: 2;
+}
+
+.form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.form-registration input {
+    border-radius: 0;
+    margin-bottom: -1px;
 }

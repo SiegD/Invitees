@@ -35,7 +35,7 @@
     </div>
 
     {{-- Features --}}
-    <div class="container">
+    <div class="container" id="features">
         <div class="row">
             <div class="col-sm-12 text-center">
                 <h2>Features</h2>
@@ -115,7 +115,7 @@
     <hr>
 
     {{-- Price --}}
-    <div class="container">
+    <div class="container" id="price">
         <div class="row">
             <div class="col-sm-12 text-center mt-3">
                 <h2>Harga</h2>
@@ -188,7 +188,7 @@
     <hr>
 
     {{-- Contact Us --}}
-    <div class="container">
+    <div class="container" id="contact">
         <div class="row ">
             <div class="col-sm-12 text-center mt-3">
                 <h2>Contact</h2>

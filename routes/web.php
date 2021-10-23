@@ -14,9 +14,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('Undangan.undangannikah');
+    return view('undangan.undangannikah');
+});
+
+Route::get('/register', function () {
+    return view('register.index');
 });
 
 Route::get('/home', function () {
     return view('Landing.index');
+});
+
+Route::get('/login', function () {
+    return view('Login.index');
 });

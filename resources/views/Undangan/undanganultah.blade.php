@@ -95,7 +95,7 @@
                     </div>
                 </div>
                 <div class="modal-footer justify-content-center">
-                    <button type="button" class="btn btn-warning">Unduh</button>
+                    <button type="button" class="btn btn-primary">Unduh</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -172,9 +172,7 @@
         <div class="timer">
             <p>Waktu hingga resepsi</p>
             <p id="demo"></p>
-            <a class="btn btn-success"
-                href="https://www.google.com/calendar/render?action=TEMPLATE&text=Pernikahan+Gilbert+dan+Anna&dates=20210704T350000Z/20210704T380000Z&details=For+details,+link+here:+http://www.example.com&location=Upperhills+Convention+Hall,+Jl.+Metro+Tj.+Bunga+No.995+,+Mattoangin,+Kec. Mariso,+Kota Makassar,+Sulawesi+Selatan+90224,+ Indonesia&sf=true&output=xml">
-                <i class="bi bi-clock-fill"></i> Atur pengingat</a>
+            <a class="btn btn-success" href="#"> <i class="bi bi-clock-fill"></i> Atur pengingat</a>
         </div>
     </div>
 

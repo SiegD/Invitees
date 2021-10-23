@@ -24,7 +24,7 @@
 
     <title>Invitees | Solusi untuk undangan anda</title>
 
-
+    <link rel="icon" href="/image/logo.png" type="iamge/x-icon">
 </head>
 
 <body style="background-color: antiquewhite">

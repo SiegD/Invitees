@@ -12,7 +12,106 @@
     z-index: -1;
 } */
 
+body {
+    overflow-x: hidden;
+}
 
+/* #overlay {
+    position: fixed;
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2;
+    cursor: pointer;
+} */
+
+.modal-content {
+    background-repeat: no-repeat;
+    background-color: rgba(221, 179, 115, 255);
+}
+
+@media screen and (min-width: 500px) {
+    .modal-dialog {
+        min-width: 60vw;
+    }
+
+    .modal-header {
+        font-size: calc(8px + 1vw);
+    }
+
+    .modal-header h6 {
+        font-size: calc(10px + 1vw);
+    }
+
+    .modal-header h4 {
+        font-size: calc(20px + 3vw);
+    }
+
+}
+
+@media screen and (max-width: 500px) {
+    .modal-body .barcode {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin-bottom: 5%;
+    }
+
+    .modal-body .barcode img {
+        width: 100%;
+    }
+
+    .modal-dialog {
+        padding: 2%;
+    }
+
+    .modal-body .data .data-tamu {
+        flex-direction: column;
+        flex-wrap: wrap;
+        text-align: center;
+        font-size: calc(10px + 1vw);
+        width: 100%;
+    }
+
+    .modal-header {
+        font-size: calc(12px + 1vw);
+    }
+
+    .modal-header h6 {
+        font-size: calc(10px + 2vw);
+        margin-top: 5vw;
+    }
+
+    .modal-header h4 {
+        font-size: calc(20px + 3vh);
+        margin-bottom: 2%;
+    }
+}
+
+.modal-body .data {
+    box-sizing: border-box;
+    padding: 5%;
+}
+
+.modal-body .barcode img {
+    width: 80%;
+}
+
+.data-tamu {
+    flex-direction: column;
+    flex-wrap: wrap;
+    text-align: center;
+    font-size: calc(5px + 1vw);
+}
+
+.modal-header h4 {
+    font-family: "dancing script";
+}
 
 .fotoawal {
     width: 100%;
@@ -25,7 +124,7 @@
 }
 
 .fotoawal img {
-    max-width: 100%;
+    width: 100%;
     height: auto;
     display: block;
     z-index: -1;
@@ -83,6 +182,7 @@
     background-color: blanchedalmond;
     color: pink;
     display: inline-table;
+    margin: 5% auto 5%;
 }
 
 .salam p {
@@ -96,34 +196,61 @@
     font-weight: bold;
 }
 
-.row {
-    /* border: 1px solid black; */
-    padding: 5%;
+.infoacara {
+    margin: 5%;
+    margin-left: 2%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
-.row .isi-gl {
-    align-items: center;
-    text-align: center;
-    border-radius: 5%;
-    margin: 1vh 2vh 2vh;
-    margin-top: 3vh;
-}
-
-#event_detail {
+.isi-gl {
+    box-sizing: border-box;
     background-color: bisque;
-    box-shadow: 4px 8px rgba(0, 0, 0, 0.2);
-    font-size: calc(8px + 2vw);
-    padding: 5%;
-}
-
-#event_detail h1 {
-    font-size: larger;
-}
-
-.row .galeri {
-    width: 100%;
     border-radius: 5%;
-    box-shadow: 4px 8px rgba(0, 0, 0, 0.2);
+    min-width: 45%;
+    min-height: 30vh;
+    align-items: center;
+    padding: 2%;
+    text-align: center;
+}
+
+.isi-gl .detailacara {
+    flex-wrap: wrap;
+    flex-flow: column;
+    padding-top: 2%;
+}
+
+.detailacara .judul {
+    font-weight: bold;
+    font-size: calc(10px + 3vw);
+    margin-top: 2%;
+    margin-bottom: 2%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.detailacara p {
+    font-size: calc(5px + 2vw);
+    font-family: 'Roboto', sans-serif;
+}
+
+.isi-gl .galeri {
+    width: 100%;
+    min-width: 30vw;
+    border-radius: 5%;
+}
+
+@media (max-width: 1200px) {
+    .infoacara {
+        display: flex;
+        justify-content: space-between;
+        padding: 2%;
+    }
+
+    .isi-gl {
+        width: 100%;
+        margin: 2%;
+    }
 }
 
 .mapresepsi {
@@ -133,6 +260,7 @@
 
 .bungkusmap {
     background-color: bisque;
+    box-shadow: 4px 8px rgba(0, 0, 0, 0.2);
     padding: 2% 5% 3%;
     border-radius: 2%;
 }
@@ -150,4 +278,114 @@
     height: 100%;
     width: 100%;
     position: absolute;
+}
+
+.timer {
+    padding: 2%;
+    border-radius: 2%;
+    background-color: bisque;
+    text-align: center;
+    font-size: calc(12px + 3vw);
+    font-weight: bold;
+    box-shadow: 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 5%;
+}
+
+#demo {
+    font-weight: normal;
+    font-family: 'Roboto', sans-serif;
+}
+
+.rsvp {
+    background-color: bisque;
+    padding: 5%;
+    margin: 5%;
+    margin-top: 10%;
+    border-radius: 2%;
+    box-shadow: 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 2%;
+}
+
+.rsvp-detail {
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: calc(8px + 1vw);
+    padding: 2%;
+}
+
+.rsvp {
+    text-align: center;
+}
+
+.rsvp .form-group {
+    margin-bottom: 2%;
+    text-align: left;
+}
+
+.buku-tamu {
+    background-color: bisque;
+    padding: 5%;
+    margin: 5%;
+    margin-top: 10%;
+    border-radius: 2%;
+    box-shadow: 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.buku-tamu form {
+    text-align: left;
+}
+
+.kolomkomen {
+    display: flex;
+    overflow: hidden;
+    padding: 2% 6%;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.komen {
+    overflow: hidden;
+    background-color: bisque;
+    padding: 2%;
+    border-radius: 2%;
+    font-family: 'Roboto', sans-serif;
+    box-shadow: 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.footer {
+    background-color: burlywood;
+    margin-top: 3%;
+    padding: 2%;
+    display: flex;
+    /* flex-wrap: wrap; */
+    overflow: hidden;
+}
+
+.footer .row {
+    justify-content: space-between;
+    padding: 2%;
+}
+
+.logo {
+    min-width: 20vw;
+    padding: 2%;
+    align-self: center;
+}
+
+.logo img {
+    width: 50%;
+    border-radius: 15%;
+    transform: translateX(50%);
+}
+
+.kontak {
+    text-align: center;
+    font-size: calc(10px + 2vw);
+    transform: translateY(17%);
+    font-family: 'Roboto', sans-serif;
+}
+
+#bold {
+    font-weight: bold;
 }
