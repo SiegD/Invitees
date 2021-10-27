@@ -24,9 +24,31 @@
                     <a class="nav-link {{ Request::is('home#contact') ? 'active' : '' }}" href="/home#contact">Contact
                         Us</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ Request::is('login') ? 'active' : '' }}" href="/login">Login</a>
-                </li>
+
+                @auth
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Halo, {{ auth()->user()->name }}
+                        </a>
+                        <ul class="dropdown-menu border-0" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="/dashboard"> <i
+                                        class="bi bi-layout-text-window-reverse"></i>
+                                    Dashboard saya</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-cart3"></i> Paket saya</a>
+                            </li>
+                            <hr>
+                            <li>
+                                <button data-toggle="modal" data-target="#logoutmodal" class="dropdown-item"
+                                    id="modal-logout"><i class="bi bi-box-arrow-right"></i>
+                                    Logout</button>
+                        </ul>
+                    </li>
+                @else
+                    <li class="nav-item">
+                        <a class="nav-link {{ Request::is('Login') ? 'active' : '' }}" href="/login">Login</a>
+                    </li>
+                @endauth
             </ul>
         </div>
     </div>

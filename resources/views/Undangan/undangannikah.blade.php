@@ -32,7 +32,7 @@
     {{-- My Style --}}
     <link rel="stylesheet" href="/css/undangan/style.css">
     <title>Invitees - Startup yang terpaksa dan demi nilai</title>
-
+    <link rel="icon" href="/image/logo.png" type="image/x-icon">
 
 </head>
 
@@ -254,7 +254,7 @@
         <div class="col-lg-12">
             <div class="row mt-5">
                 <div class="logo col-lg-6 mb-3 ">
-                    <img src="/image/logo.png" alt="">
+                    <img src="/image/logo 2.png" alt="">
                 </div>
 
 
@@ -298,12 +298,6 @@
             document.getElementById("demo").innerHTML = "EXPIRED";
         }
     }, 1000);
-</script>
-
-<script>
-    function off() {
-        document.getElementById("overlay").style.display = "none";
-    }
 </script>
 
 <script type="text/javascript">

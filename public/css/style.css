@@ -215,3 +215,9 @@ p {
     border-radius: 0;
     margin-bottom: -1px;
 }
+
+.dropdown-menu {
+    background-color: bisque;
+    font-family: 'poppins-medium';
+    border: 2px solid grey;
+}

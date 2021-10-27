@@ -7,6 +7,8 @@ use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvi
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
+use app\Models\User;
+use Illuminate\support\facades\Gate;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -17,6 +19,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
+    // public const HOME = '/home';
     public const HOME = '/home';
 
     /**
@@ -46,6 +49,10 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
+        });
+
+        Gate::define('admin', function (User $user) {
+            return $user->user_status_id === 1;
         });
     }
 
