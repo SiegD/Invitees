@@ -1,34 +1,22 @@
-/* .fotoawal {
-    min-height: 100vh;
-    padding: 0%;
-    overflow: hidden;
-    background: rgba(25, 64, 32, 0.2);
+@font-face {
+    font-family: "briquete";
+    src: url("/font/Briquete-Regular.otf");
 }
 
-.fotoawal img {
-    width: 100%;
-    height: inherit;
-    position: absolute;
-    z-index: -1;
-} */
+@font-face {
+    font-family: "Poppins-bold";
+    src: url("/font/Poppins-Bold.ttf");
+}
+
+@font-face {
+    font-family: "Poppins-medium";
+    src: url("/font/Poppins-Medium.ttf");
+}
 
 body {
     overflow-x: hidden;
+    background-color: #FFFDEB;
 }
-
-/* #overlay {
-    position: fixed;
-    display: flex;
-    width: 100vw;
-    height: 100vh;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 2;
-    cursor: pointer;
-} */
 
 .modal-content {
     background-repeat: no-repeat;
@@ -49,7 +37,7 @@ body {
     }
 
     .modal-header h4 {
-        font-size: calc(20px + 3vw);
+        font-size: calc(20px + 1vw);
     }
 
 }
@@ -88,7 +76,8 @@ body {
     }
 
     .modal-header h4 {
-        font-size: calc(20px + 3vh);
+        margin-top: 2%;
+        font-size: calc(20px + 1vh);
         margin-bottom: 2%;
     }
 }
@@ -110,7 +99,7 @@ body {
 }
 
 .modal-header h4 {
-    font-family: "dancing script";
+    font-family: "briquete";
 }
 
 .fotoawal {
@@ -120,7 +109,7 @@ body {
     overflow: hidden;
     padding: 0%;
     position: relative;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0 60%, rgba(255, 255, 255, 1) 99.9% 100%);
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0 60%, #FFFDEB 99.9% 100%);
 }
 
 .fotoawal img {
@@ -142,8 +131,9 @@ body {
 }
 
 .client h1 {
-    font-size: calc(16px + 6vw);
-    font-family: "dancing script";
+    font-size: calc(16px + 3vw);
+    font-family: "briquete";
+    margin-bottom: 3%;
 }
 
 .client p {
@@ -151,15 +141,12 @@ body {
 }
 
 .salam {
-    background-color: white;
     padding: 5%;
     text-align: center;
 
 }
 
 .salam .ucapan {
-    /* border: 1px solid black;
-    border-radius: 5vh; */
     padding: 3%;
 }
 
@@ -171,14 +158,14 @@ body {
 
 .salam .nama-pengantin {
     font-weight: bold;
-    font-family: "dancing script";
-    font-size: calc(12px + 4vw);
+    font-family: "briquete";
+    font-size: calc(12px + 3vw);
 }
 
 .salam .love {
     font-size: 5vw;
     width: 8vw;
-    border-radius: 50%;
+    border-radius: 100%;
     background-color: blanchedalmond;
     color: pink;
     display: inline-table;
@@ -198,7 +185,6 @@ body {
 
 .infoacara {
     margin: 5%;
-    margin-left: 2%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -206,12 +192,13 @@ body {
 
 .isi-gl {
     box-sizing: border-box;
-    background-color: bisque;
-    border-radius: 5%;
+    background-color: #DDB373;
+    box-shadow: 5px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
     min-width: 45%;
     min-height: 30vh;
     align-items: center;
-    padding: 2%;
+    padding: 0;
     text-align: center;
 }
 
@@ -219,6 +206,7 @@ body {
     flex-wrap: wrap;
     flex-flow: column;
     padding-top: 2%;
+    color: white;
 }
 
 .detailacara .judul {
@@ -226,18 +214,18 @@ body {
     font-size: calc(10px + 3vw);
     margin-top: 2%;
     margin-bottom: 2%;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "Poppins-bold";
 }
 
 .detailacara p {
     font-size: calc(5px + 2vw);
-    font-family: 'Roboto', sans-serif;
+    font-family: "Poppins-medium"
 }
 
 .isi-gl .galeri {
     width: 100%;
     min-width: 30vw;
-    border-radius: 5%;
+    border-radius: 10px;
 }
 
 @media (max-width: 1200px) {
@@ -245,6 +233,7 @@ body {
         display: flex;
         justify-content: space-between;
         padding: 2%;
+        margin-left: 2%;
     }
 
     .isi-gl {
@@ -259,10 +248,11 @@ body {
 }
 
 .bungkusmap {
-    background-color: bisque;
+    background-color: white;
     box-shadow: 4px 8px rgba(0, 0, 0, 0.2);
     padding: 2% 5% 3%;
-    border-radius: 2%;
+    border-radius: 10px;
+    font-family: "Poppins-medium";
 }
 
 .covermap {
@@ -277,31 +267,33 @@ body {
     top: 0;
     height: 100%;
     width: 100%;
+    border-radius: 10px;
     position: absolute;
 }
 
 .timer {
     padding: 2%;
-    border-radius: 2%;
-    background-color: bisque;
+    border-radius: 10px;
+    background-color: white;
     text-align: center;
     font-size: calc(12px + 3vw);
     font-weight: bold;
     box-shadow: 4px 8px rgba(0, 0, 0, 0.2);
     margin: 5%;
+    font-family: "Poppins-medium";
 }
 
 #demo {
-    font-weight: normal;
-    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-family: 'Poppins-bold';
 }
 
 .rsvp {
-    background-color: bisque;
+    background-color: white;
     padding: 5%;
     margin: 5%;
     margin-top: 10%;
-    border-radius: 2%;
+    border-radius: 10px;
     box-shadow: 4px 8px rgba(0, 0, 0, 0.2);
     padding: 2%;
 }
@@ -320,14 +312,19 @@ body {
 .rsvp .form-group {
     margin-bottom: 2%;
     text-align: left;
+    padding: 0% 5% 0%;
+}
+
+.form-control {
+    border-radius: 10px;
 }
 
 .buku-tamu {
-    background-color: bisque;
+    background-color: white;
     padding: 5%;
     margin: 5%;
     margin-top: 10%;
-    border-radius: 2%;
+    border-radius: 10px;
     box-shadow: 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
 }
@@ -339,22 +336,32 @@ body {
 .kolomkomen {
     display: flex;
     overflow: hidden;
-    padding: 2% 6%;
+    padding: 2% 2%;
     flex-wrap: wrap;
     justify-content: center;
+    margin-top: 5%;
 }
 
 .komen {
+    box-sizing: border-box;
     overflow: hidden;
-    background-color: bisque;
-    padding: 2%;
-    border-radius: 2%;
+    background-color: #FFFDEB;
+    border-radius: 10px;
     font-family: 'Roboto', sans-serif;
     box-shadow: 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: start;
+    padding: 2%;
+}
+
+@media (max-width: 500px) {
+    .komen {
+        width: 90%;
+        padding: 5%;
+    }
 }
 
 .footer {
-    background-color: burlywood;
+    background-color: #DDB373;
     margin-top: 3%;
     padding: 2%;
     display: flex;
@@ -375,17 +382,15 @@ body {
 
 .logo img {
     width: 50%;
-    border-radius: 15%;
     transform: translateX(50%);
 }
 
 .kontak {
     text-align: center;
     font-size: calc(10px + 2vw);
-    transform: translateY(17%);
     font-family: 'Roboto', sans-serif;
 }
 
 #bold {
-    font-weight: bold;
+    font-family: "Poppins-bold";
 }

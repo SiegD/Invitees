@@ -1,11 +1,52 @@
+@font-face {
+    font-family: "tahu";
+    src: url("/font/Tahu!.ttf");
+}
+
+@font-face {
+    font-family: "briquete";
+    src: url("/font/Briquete-Regular.otf");
+}
+
+@font-face {
+    font-family: "poppins-bold";
+    src: url("/font/Poppins-Bold.ttf");
+}
+
+@font-face {
+    font-family: "poppins-medium";
+    src: url("/font/Poppins-Medium.ttf");
+}
+
+.body {
+    background-color: #FDF6F0;
+}
+
 .navbar {
     background-color: bisque;
 }
 
+.nav-link {
+    font-weight: bold;
+}
+
 .navbar .navbar-brand {
-    font-style: italic;
-    font-family: 'Brush Script MT', cursive;
-    font-size: 40px;
+    font-family: 'tahu';
+    font-size: 50px;
+    margin-left: 5% !important;
+}
+
+
+@media (min-width: 992px) {
+    .navbar-expand-lg .navbar-nav .nav-link {
+        padding-right: 1.5rem;
+        padding-left: 1.5rem;
+        font-size: 1.3rem;
+    }
+
+    .harga {
+        height: 50vh;
+    }
 }
 
 .carousel {
@@ -22,30 +63,46 @@
     margin-bottom: 5vh;
 }
 
-#content svg {
-    margin: 0 auto 20px;
-    display: block;
-    background: salmon;
-    overflow: hidden;
-    box-sizing: content-box;
-    width: 5vw;
-    height: 5vw;
-    padding: 1vw;
-    border-radius: 50%;
+.judul,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "poppins-bold";
+    font-weight: bold;
+}
+
+p {
+    font-family: "poppins-medium";
+}
+
+.fdetail {
+    color: #888888;
+    font-size: calc(10px+1vw);
+}
+
+#content img {
+    width: 10vw;
+}
+
+.text {
+    margin-top: 10%;
 }
 
 #content .btn {
-    background-color: burlywood;
-    color: white;
-    width: 15vh;
+    background-color: #F8E2CF;
+    width: 25vh;
     border-radius: 10px;
+    border: 1px #f5C6AA solid;
     margin-bottom: 2vh;
 }
 
 #content .btn:hover {
     border: 1px burlywood solid;
-    background-color: aliceblue;
-    color: black;
+    background-color: #F5C6AA;
+    color: #333333;
 }
 
 .row p {
@@ -66,20 +123,24 @@
 }
 
 .harga #jh1 {
-    background-color: salmon;
+    background-color: #FCD8D4;
 }
 
 .harga #jh2 {
-    background-color: burlywood;
+    background-color: #f8e2cf;
 }
 
 .harga #jh3 {
-    background-color: blanchedalmond;
+    background-color: #f9f1cb;
 }
 
 .harga ul {
     list-style-type: none;
     padding: 2vh 2vh 2vh;
+}
+
+#tabelharga {
+    margin-bottom: 5vh;
 }
 
 #content ul {
@@ -90,33 +151,47 @@
     box-shadow: 1px 1px 8px #888888;
     margin: auto;
     margin-bottom: 1vh;
-    border-radius: 2%;
+    border-radius: 15px;
     background-color: bisque;
+    align-items: center;
 }
 
-#content2 svg {
-    margin: 2vh auto 1vh;
-    display: block;
-    overflow: hidden;
-    box-sizing: content-box;
-    width: 75px;
-    height: 75px;
-    padding: 1vw;
-    border-radius: 20%;
+#content2 img {
+    width: 5vw;
 }
 
 #content2 #kontak {
     font-size: 2vh;
     text-align: center;
+    padding-top: 10%;
+    background-color: bisque;
 }
 
 .footer {
     background-color: black;
 }
 
-@media only screen and (max-width: 600px) {
+@media (max-width: 600px) {
     .harga {
         min-height: 37vh;
+    }
+
+    #content img {
+        min-width: 30vw;
+    }
+
+    #content2 {
+        max-width: 70vw;
+        padding: 5% 10%;
+    }
+
+    .img {
+        padding-left: 20vw;
+    }
+
+
+    #content2 img {
+        min-width: 15vw;
     }
 }
 

@@ -38,7 +38,7 @@
     <div class="container" id="features">
         <div class="row">
             <div class="col-sm-12 text-center">
-                <h2>Features</h2>
+                <h2 class="judul">Features</h2>
                 <p class="mb-1">Berikut adalah fitur-fitur yang dapat kamu nikmati jika menggunakan undangan
                     digital Invitees</p>
                 <p class="text-muted mt-1 mb-5">*Beberapa fitur hanya tersedia untuk paket tertentu</p>
@@ -46,67 +46,68 @@
         </div>
 
 
-        <div class="row justify-content-center mx-5" id="content">
+        <div class="row justify-content-evenly mx-5" id="content">
             <div class="col-sm-4 col-sm-offset-5 text-center">
-                <i data-feather="layout"></i>
-                <p class="mb-1 tex" style="font-weight:bold;">Template Beragam</p>
-                <p>Pilihan template dengan tema beragam yang sesuai dengan kebutuhanmu
+                <img src="/image/icon/Template.png" alt="">
+                <p class="mb-1 text" style="font-weight:bold;">Template Beragam</p>
+                <p class="fdetail">Pilihan template dengan tema beragam yang sesuai dengan kebutuhanmu
                 </p>
             </div>
 
             <div class="col-sm-4 col-sm-offset-5 text-center">
-                <i data-feather="book-open"></i>
-                <p class="mb-1 tex" style="font-weight:bold;">Buku Tamu</p>
-                <p>Buku tamu yang diisi dengan doa dan ucapan selamat dari para tamu undangan
+                <img src="/image/icon/Buku Tamu.png" alt="">
+                <p class="mb-1 text" style="font-weight:bold;">Buku Tamu</p>
+                <p class="fdetail">Buku tamu yang diisi dengan doa dan ucapan selamat dari para tamu undangan
                 </p>
             </div>
 
             <div class="col-sm-4 col-sm-offset-5 text-center">
-                <i data-feather="mail"></i>
-                <p class="mb-1 tex" style="font-weight:bold;">RSVP</p>
-                <p>Konfirmasi kehadiran tamu yang diundang melalui fitur ini
+                <img src="/image/icon/RSVP.png" alt="">
+                <p class="mb-1 text" style="font-weight:bold;">RSVP</p>
+                <p class="fdetail">Konfirmasi kehadiran tamu yang diundang melalui fitur ini
                 </p>
             </div>
 
             <div class="col-sm-4 col-sm-offset-5 text-center">
-                <i data-feather="mail"></i>
-                <p class="mb-1 tex" style="font-weight:bold;">Lokasi dan Waktu Acara</p>
-                <p>Lokasi acara yang terintegrasi dengan Google Maps dan informasi acara (tanggal dan waktu)
+                <img src="/image/icon/Lokasi Waktu.png" alt="">
+                <p class="mb-1 text" style="font-weight:bold;">Lokasi dan Waktu Acara</p>
+                <p class="fdetail">Lokasi acara yang terintegrasi dengan Google Maps dan informasi acara (tanggal dan
+                    waktu)
                 </p>
             </div>
 
             <div class="col-sm-4 col-sm-offset-5 text-center">
-                <i data-feather="mail"></i>
-                <p class="mb-1 tex" style="font-weight:bold;">Pengingat Acara</p>
-                <p>Kirim pengingat untuk para tamu undangan agar hadir di acaramu
+                <img src="/image/icon/Pengingat.png" alt="">
+                <p class="mb-1 text" style="font-weight:bold;">Pengingat Acara</p>
+                <p class="fdetail">Kirim pengingat untuk para tamu undangan agar hadir di acaramu
                 </p>
             </div>
 
             <div class="col-sm-4 col-sm-offset-5 text-center">
-                <i data-feather="mail"></i>
-                <p class="mb-1 tex" style="font-weight:bold;">Galeri Foto</p>
-                <p>Unggah foto-foto berkesan yang dapat dilihat oleh tamu undanganmu
+                <img src="/image/icon/Galeri.png" alt="">
+                <p class="mb-1 text" style="font-weight:bold;">Galeri Foto</p>
+                <p class="fdetail">Unggah foto-foto berkesan yang dapat dilihat oleh tamu undanganmu
                 </p>
             </div>
 
             <div class="col-sm-4 col-sm-offset-5 text-center">
-                <i data-feather="mail"></i>
-                <p class="mb-1 tex" style="font-weight:bold;">Musik</p>
-                <p>UBagikan perasaanmu melalui musik yang dimainkan saat website diakses
+                <img src="/image/icon/Musik.png" alt="">
+                <p class="mb-1 text" style="font-weight:bold;">Musik</p>
+                <p class="fdetail">Bagikan perasaanmu melalui musik yang dimainkan saat website diakses
                 </p>
             </div>
 
             <div class="col-sm-4 col-sm-offset-5 text-center">
-                <i data-feather="mail"></i>
-                <p class="mb-1 tex" style="font-weight:bold;">Angpao Online</p>
-                <p>Tamu undangan dapat membagikan angpao secara online (cashless)
+                <img src="/image/icon/Angpao.png" alt="">
+                <p class="mb-1 text" style="font-weight:bold;">Angpao Online</p>
+                <p class="fdetail">Tamu undangan dapat membagikan angpao secara online (cashless)
                 </p>
             </div>
 
             <div class="col-sm-4 col-sm-offset-5 text-center">
-                <i data-feather="mail"></i>
-                <p class="mb-1 tex" style="font-weight:bold;">Live Streaming</p>
-                <p>Tamu undangan yang berhalangan hadir dapat menyaksikan live streaming dari acaramu
+                <img src="/image/icon/Live.png" alt="">
+                <p class="mb-1 text" style="font-weight:bold;">Live Streaming</p>
+                <p class="fdetail">Tamu undangan yang berhalangan hadir dapat menyaksikan live streaming dari acaramu
                 </p>
             </div>
         </div>
@@ -118,13 +119,13 @@
     <div class="container" id="price">
         <div class="row">
             <div class="col-sm-12 text-center mt-3">
-                <h2>Harga</h2>
-                <p class="mt-3 mb-5">Pilih paket terbaik yang sesuai dengan kebutuhanmu dan dapatkan fitur-fitur
+                <h2 class="judul">Harga</h2>
+                <p class="fdetail mt-3 mb-5">Pilih paket terbaik yang sesuai dengan kebutuhanmu dan dapatkan fitur-fitur
                     menarik untuk undangan digitalmu!</p>
             </div>
         </div>
 
-        <div class="row justify-content-center mx-5" id="content">
+        <div class="row justify-content-evenly mx-5" id="content">
             <div class="col-sm-4 col-sm-offset-5 text-center" id="tabelharga">
                 <div class="harga">
                     <div class="jenis-harga" id="jh1">
@@ -191,39 +192,38 @@
     <div class="container" id="contact">
         <div class="row ">
             <div class="col-sm-12 text-center mt-3">
-                <h2>Contact</h2>
-                <p class="mt-3 mb-5"> Hubungi kami melalui kontak yang ada dibawah ini</p>
+                <h2 class="judul">Contact</h2>
+                <p class="fdetail mt-3 mb-5"> Hubungi kami melalui kontak yang ada dibawah ini</p>
             </div>
         </div>
 
         {{-- mail --}}
-        <div class="row sm-12">
-            <div class="col-sm-6 justify-content-center">
-                <div class="row justify-content-center" id="content2">
+        <div class="row sm-12 justify-content-evenly">
+            <div class="col-sm-4 mb-4">
+                <div class="row justify-content-evenly" id="content2">
 
-                    <div class="col-sm-3 my-auto">
-                        <i data-feather="mail" style="background-color: white;"></i>
+                    <div class="img col-sm-4 my-auto justify-content-center">
+                        <img src="/image/icon/mail.png" alt="">
                     </div>
 
                     <div class="col-sm-6 col-sm-offset-2 " id="kontak">
-                        <p class="mt-5 mb-1" style="font-weight:bold;">Email</p>
-                        <p>Invitees@gmail.com
-                        </p>
+                        <p class="mb-1" style="font-weight:bold;">Email</p>
+                        <p>Invitees@gmail.com</p>
                     </div>
                 </div>
 
             </div>
 
             {{-- telp --}}
-            <div class="col-sm-6">
-                <div class="row justify-content-center" id="content2">
+            <div class="col-sm-4">
+                <div class="row justify-content-evenly" id="content2">
 
-                    <div class="col-sm-3 my-auto">
-                        <i data-feather="phone" style="background-color: teal;"></i>
+                    <div class="img col-sm-3 my-auto justify-content-center">
+                        <img src="/image/icon/telephone.png" alt="">
                     </div>
 
                     <div class="col-sm-6 col-sm-offset-2" id="kontak">
-                        <p class="mt-5 mb-1" style="font-weight:bold;">Phone</p>
+                        <p class="mb-1" style="font-weight:bold;">Phone</p>
                         <p>0821 XXXX XXXX</p>
                     </div>
                 </div>

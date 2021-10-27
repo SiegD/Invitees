@@ -37,36 +37,13 @@
 </head>
 
 <body>
-    <!--Overlay-->
-    {{-- <div class="overlay" onclick="off()" id="overlay">
-        <div class="guest col-sm-8 ">
-            <div class="overlay-salam row-sm-8 justify-content-center">
-                <p>Undangan pernikahan</p>
-                <h1>Gilbert & Anna</h1>
-                <p>5 July | Upperhills Convention Hall | 19.00</p>
-            </div>
+    {{-- Music --}}
+    <audio autoplay>
+        <source src="/songs/Can You Feel The Love Tonight Cover  FULL AUDIO.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
 
-            <div class="overlay-data row">
-                <div class="barcode col-sm-6">
-                    <img src="/image/qrcode.jpeg" alt="">
-                </div>
-                <div class="data col-sm-6">
-                    <p>Kepada Yth.</p>
-                    <h1>Julia W. & Keluarga</h1>
-                    <p>Meja : Amarylis</p>
-                    <p>Berlaku untuk : 2 Orang</p>
-                    <p>Kami mengundang Bapak/Ibu/Saudara/i untuk hadir di acara kami. Mohon Screeenshot halaman ini atau
-                        klik unduh dan tunjukkan saat proses registrasi</p>
-                </div>
-            </div>
-            
-            <div class="button row">
-                <button>Unduh</button>
-                <button onclick="off()">Tutup</button>
-            </div>
-        </div>
-    </div> --}}
-
+    {{-- Overlay --}}
     <div class="modal fade" id="overlay" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -102,7 +79,6 @@
         </div>
     </div>
 
-
     <!--UPPERBODY-->
     <div class="fotoawal col-sm-12 justify-content-center">
         <img src="/image/client1.png" alt="">
@@ -130,7 +106,7 @@
     </div>
 
     {{-- Galeri and events location --}}
-    <div class="col-lg-12">
+    <div class="col-lg-12" style="padding: 2%">
         <div class="infoacara row">
             <div class="isi-gl col-sm-5">
                 <img class="galeri" src="/image/client.jpg" alt="">
@@ -157,22 +133,23 @@
     {{-- Maps --}}
     <div class="mapresepsi col-lg-12 justify-content-center">
         <div class="bungkusmap">
-            <h1 class="mb-3" id="bold">Lokasi Acara</h1>
+            <h1 class="mb-3" id="bold" style="color: #DDB373">Lokasi Acara</h1>
             <div class="covermap">
                 <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3973.656602456615!2d119.39989891527779!3d-5.158833853562916!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dbf1d0dca1cf797%3A0x15a4ebc6aa0744fa!2sUpperHills%20Convention%20Hall!5e0!3m2!1sen!2sid!4v1634818309555!5m2!1sen!2sid"
                     width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
-            <a class="btn btn-map mt-4 btn-success" href="https://goo.gl/maps/nPmkjtjKzKY5XvKw6">Lihat di maps</a>
+            <a class="btn btn-map mt-3 mb-2" href="https://goo.gl/maps/nPmkjtjKzKY5XvKw6"
+                style="color: white; background-color:#DDB373">Lihat di maps</a>
         </div>
     </div>
 
     {{-- Timer --}}
     <div class="col-lg-12 justify-content-center">
         <div class="timer">
-            <p>Waktu hingga resepsi</p>
+            <p style="color: #DDB373" id="bold">Waktu hingga resepsi</p>
             <p id="demo"></p>
-            <a class="btn btn-success"
+            <a class="btn mb-2" style="background-color: #DDB373; color:white;"
                 href="https://www.google.com/calendar/render?action=TEMPLATE&text=Pernikahan+Gilbert+dan+Anna&dates=20210704T350000Z/20210704T380000Z&details=For+details,+link+here:+http://www.example.com&location=Upperhills+Convention+Hall,+Jl.+Metro+Tj.+Bunga+No.995+,+Mattoangin,+Kec. Mariso,+Kota Makassar,+Sulawesi+Selatan+90224,+ Indonesia&sf=true&output=xml">
                 <i class="bi bi-clock-fill"></i> Atur pengingat</a>
         </div>
@@ -183,7 +160,7 @@
     <div class="col-lg-12">
         <div class="rsvp">
             <div class="rsvp-detail">
-                <h1 id="bold">RSVP</h1>
+                <h1 id="bold" style="color: #DDB373">RSVP</h1>
                 <p>Tanpa mengurangi rasa hormat, kami mengharapkan anda untuk mengisi RSVP di bawah ini. Konfirmasi ini
                     sangat
                     penting sehubungan dengan Protokol Kesehatan untuk penggunaan kapasitas ballroom yang harus
@@ -192,18 +169,16 @@
             <form>
                 <div class="form-group">
                     <label for="name">Nama</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1"
-                        placeholder="name@example.com">
+                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Nama anda">
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" class="form-control" id="exampleFormControlInput1"
-                        placeholder="name@example.com">
+                        placeholder="Name@example.com">
                 </div>
                 <div class="form-group">
                     <label for="phone_number">No. Telp</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1"
-                        placeholder="name@example.com">
+                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="No. Telp">
                 </div>
                 <div class="form-group">
                     <label for="confimation">Konfirmasi Kehadiran</label>
@@ -213,72 +188,79 @@
                     </select>
                 </div>
             </form>
-            <a class="btn btn-success" href="">Kirim</a>
+            <a class="btn mb-2 mt-2" href="" style="color: white; background-color:#DDB373;">Kirim</a>
         </div>
     </div>
 
-    <!--Buku tamu-->
+    <!--Buku tamu & komen-->
     <div class="col-sm-12">
         <div class="buku-tamu">
-            <h1 id="bold">Buku Tamu</h1>
+            <h1 id="bold" style="color: #DDB373">Buku Tamu</h1>
             <form>
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <label for="exampleInputEmail1" class="form-label">Nama</label>
+                    <input type="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                 </div>
                 <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
+                    <label for="exampleInputPassword1" class="form-label">Ucapan</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
                 </div>
-                <button type="submit" class="btn btn-success">Submit</button>
+                <div class="btn-holder mt-4 mb-5" style="text-align: center">
+                    <button type="submit" class="btn"
+                        style="background-color: #DDB373; color:white">Submit</button>
+                </div>
             </form>
+
+            <!--Komen-->
+            <div class="kolomkomen col-lg-12 justify-content-center">
+                <div class="row justify-content-center">
+                    <div class="komen mb-4">
+                        <h4 id="bold" style="color: #DDB373">Name</h4>
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam expedita necessitatibus nihil
+                            magnam,
+                            ex
+                            maxime porro. Libero voluptates veritatis nulla?</p>
+                    </div>
+
+                    <div class="komen mb-4">
+                        <h4>Name</h4>
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam expedita necessitatibus nihil
+                            magnam,
+                            ex
+                            maxime porro. Libero voluptates veritatis nulla?</p>
+                    </div>
+
+                    <div class="komen">
+                        <h4>Name</h4>
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam expedita necessitatibus nihil
+                            magnam,
+                            ex
+                            maxime porro. Libero voluptates veritatis nulla?</p>
+                    </div>
+                </div>
+            </div>
+            {{-- pagination --}}
+            <div class="d-flex justify-content-center mt-5">
+                {{-- {{ $posts->links() }} --}} <p>
+                    <1>
+                </p>
+            </div>
         </div>
     </div>
 
-    <!--Komen-->
-    <div class="kolomkomen col-lg-12 justify-content-center">
-        <div class="row">
-            <div class="komen mb-4">
-                <h4 id="bold">Name</h4>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam expedita necessitatibus nihil magnam,
-                    ex
-                    maxime porro. Libero voluptates veritatis nulla?</p>
-            </div>
-
-            <div class="komen mb-4">
-                <h4>Name</h4>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam expedita necessitatibus nihil magnam,
-                    ex
-                    maxime porro. Libero voluptates veritatis nulla?</p>
-            </div>
-
-            <div class="komen">
-                <h4>Name</h4>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam expedita necessitatibus nihil magnam,
-                    ex
-                    maxime porro. Libero voluptates veritatis nulla?</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="d-flex justify-content-center mt-5">
-        {{-- {{ $posts->links() }} --}} <p>
-            <1>
-        </p>
-    </div>
 
     <!--Footer-->
     <div class="footer justify-content-center ">
         <div class="col-lg-12">
-            <div class="row">
+            <div class="row mt-5">
                 <div class="logo col-lg-6 mb-3 ">
                     <img src="/image/logo.png" alt="">
                 </div>
 
 
-                <div class="kontak col-lg-6 mb-3" style="text-align: center">
-                    <h1 id="bold">Contact us :</h1>
-                    <p>Invitees.Exanimo@gmail.com</p>
+                <div class="kontak col-lg-6 mb-3 mt-3" style="text-align: center">
+                    <h1 id="bold" class="mb-3">Contact us :</h1>
+                    <p class="mb-1">Invitees.Exanimo@gmail.com</p>
                     <p>0821 XXXX XXXX</p>
                 </div>
             </div>

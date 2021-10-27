@@ -31,7 +31,7 @@
 
     {{-- My Style --}}
     <link rel="stylesheet" href="/css/undangan/style.css">
-    <title>Invitees - Startup yang terpaksa dan demi nilai</title>
+    <title>Invitees - Pernikahan Gilber & Anna</title>
 
 
 </head>
