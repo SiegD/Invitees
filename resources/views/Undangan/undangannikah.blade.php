@@ -38,9 +38,8 @@
 
 <body>
     {{-- Music --}}
-    <audio autoplay>
+    <audio autoPlay loop>
         <source src="/songs/Can You Feel The Love Tonight Cover  FULL AUDIO.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
     </audio>
 
     {{-- Overlay --}}

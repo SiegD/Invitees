@@ -17,12 +17,6 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">
-                            <span data-feather="shopping-cart"></span>
-                            Paket saya
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
                             <span data-feather="mail"></span>
                             Undanganku
                         </a>
@@ -54,29 +48,33 @@
                     </h6>
                     <ul class="nav flex-column mb-2">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="user"></span>
-                                Client
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="/dashboard/users">
                                 <span data-feather="settings"></span>
-                                User editor
+                                Clients
                             </a>
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="map-pin"></span>
-                                Venue
+                            <a class="nav-link" href="/dashboard/events">
+                                <span data-feather="user"></span>
+                                Events
                             </a>
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="/dashboard/event_type">
                                 <span data-feather="columns"></span>
                                 Event Type
                             </a>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/dashboard/location">
+                                <span data-feather="map-pin"></span>
+                                Venue
+                            </a>
+                        </li>
+
                     </ul>
                 @endcan
             </div>

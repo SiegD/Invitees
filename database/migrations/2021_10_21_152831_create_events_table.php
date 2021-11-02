@@ -18,13 +18,14 @@ class CreateEventsTable extends Migration
             $table->unsignedBigInteger('event_type_id');
             $table->unsignedBigInteger('event_location_id');
             $table->dateTime('event_date_time');
-            $table->string('client_name');
-            $table->string('client_email');
-            $table->string('client_phone');
+            $table->unsignedBigInteger('user_id');
+            $table->string('cover_img')->nullable();
+            $table->string('gal_img')->nullable();
             $table->timestamps();
 
-            $table->foreign('event_type_id')->references('id')->on('event_types');
-            $table->foreign('event_location_id')->references('id')->on('locations');
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('event_type_id')->references('id')->on('event_types')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('event_location_id')->references('id')->on('locations')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

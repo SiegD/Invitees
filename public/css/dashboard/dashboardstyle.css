@@ -128,3 +128,14 @@ body {
     border-color: transparent;
     box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
 }
+
+.container {
+    margin-left: 20vw;
+    width: 90vw;
+}
+
+@media (max-width: 767.98px) {
+    .container {
+        margin-left: auto;
+    }
+}

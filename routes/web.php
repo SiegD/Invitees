@@ -1,8 +1,14 @@
 <?php
 
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DashboardEventTypeController;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\EventTypeController;
+use App\Http\Controllers\LocationController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\registercontroller;
+use App\Models\location;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,3 +40,9 @@ Route::post('/register', [registercontroller::class, 'store']);
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
+
+Route::resource('dashboard/events', EventController::class)->middleware('auth');
+
+Route::resource('dashboard/event_type', EventTypeController::class)->middleware('auth');
+Route::resource('dashboard/location', LocationController::class)->middleware('auth');
+Route::resource('dashboard/users', ClientController::class)->middleware('auth');

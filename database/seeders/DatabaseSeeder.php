@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\location;
 use App\Models\User;
 use App\Models\user_status;
 use Illuminate\Database\Seeder;
@@ -23,10 +24,12 @@ class DatabaseSeeder extends Seeder
         user_status::create([
             'status' => 'guest'
         ]);
+
         User::create([
             'name' => 'admin',
             'username' => 'admin',
             'email' => 'hunx.13@gmail.com',
+            'phone' => '0895330129055',
             'password' => bcrypt('password'),
             'user_status_id' => '1'
         ]);

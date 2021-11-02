@@ -26,8 +26,8 @@ class CreateEventMarriagesTable extends Migration
             $table->string('bride_mother');
             $table->timestamps();
 
-            $table->foreign('event_id')->references('id')->on('events');
-            $table->foreign('ceremonial_location_id')->references('id')->on('locations');
+            $table->foreign('event_id')->references('id')->on('events')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('ceremonial_location_id')->references('id')->on('locations')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
