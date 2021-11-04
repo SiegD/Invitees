@@ -16,14 +16,14 @@ class Event extends Model
         return $this->belongsTo(event_type::class);
     }
 
-    public function event_location()
+    public function Event_location()
     {
         return $this->belongsTo(location::class);
     }
 
     public function User()
     {
-        return $this->belongsTo(location::class);
+        return $this->belongsTo(User::class);
     }
 
     public function Event_marriage()

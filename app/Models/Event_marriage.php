@@ -15,4 +15,9 @@ class Event_marriage extends Model
     {
         return $this->belongsTo(Event::class);
     }
+
+    public function Event_location()
+    {
+        return $this->belongsTo(location::class);
+    }
 }

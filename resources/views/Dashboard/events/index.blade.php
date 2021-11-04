@@ -29,17 +29,13 @@
                 @foreach ($events as $event)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $event->client_name }}</td>
+                        <td>{{ $event->user->name }}</td>
                         <td>{{ $event->event_type->name }}</td>
                         <td>{{ $event->event_location->venue }}</td>
                         <td>{{ $event->event_date_time }}</td>
-                        <td>{{ $event->client_email }}</td>
-                        <td>{{ $event->client_phone }}</td>
+                        <td>{{ $event->user->email }}</td>
+                        <td>{{ $event->user->phone }}</td>
                         <td>
-                            @if ($contains = str_contains($event->event_type->name, 'Marriage'))
-                                <a href="/dashboard/events/{{ $event->id }}" class="badge bg-info">
-                                    <span data-feather="eye"></span></a>
-                            @endif
 
                             <a href="/dashboard/events/{{ $event->id }}/edit" class="badge bg-warning">
                                 <span data-feather="edit"></span></a>

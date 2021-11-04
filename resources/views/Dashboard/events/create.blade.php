@@ -59,7 +59,6 @@
 
             {{-- Hidden --}}
             <div id="marriageform">
-
                 <div class="mb-3">
                     <label for="ceremonial_location" class="form-label">Ceremonial Location</label>
                     <select class="form-select" name="ceremonial_location_id">
@@ -77,7 +76,7 @@
                 <div class="mb-3">
                     <label for="ceremonial_date_time" class="form-label">Ceremonial Date & Time</label>
                     <input type="datetime-local" class="form-control @error('ceremonial_date_time') is-invalid @enderror"
-                        id="ceremonial_date_time" name="ceremonial_date_time" required autofocus
+                        id="ceremonial_date_time" name="ceremonial_date_time" autofocus
                         value="{{ old('ceremonial_date_time') }}">
                     @error('ceremonial_date_time')
                         <div class="invalid-feedback">
@@ -89,7 +88,7 @@
                 <div class="mb-3">
                     <label for="groom" class="form-label">Groom</label>
                     <input type="text" class="form-control @error('groom') is-invalid @enderror" id="groom" name="groom"
-                        required autofocus value="{{ old('groom') }}">
+                        autofocus value="{{ old('groom') }}">
                     @error('groom')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -100,7 +99,7 @@
                 <div class="mb-3">
                     <label for="groom_father" class="form-label">Groom Father</label>
                     <input type="text" class="form-control @error('groom_father') is-invalid @enderror" id="groom_father"
-                        name="groom_father" required autofocus value="{{ old('groom_father') }}">
+                        name="groom_father" autofocus value="{{ old('groom_father') }}">
                     @error('groom_father')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -111,7 +110,7 @@
                 <div class="mb-3">
                     <label for="groom_mother" class="form-label">Groom Mother</label>
                     <input type="text" class="form-control @error('groom_mother') is-invalid @enderror" id="groom_mother"
-                        name="groom_mother" required autofocus value="{{ old('groom_mother') }}">
+                        name="groom_mother" autofocus value="{{ old('groom_mother') }}">
                     @error('groom_mother')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -122,7 +121,7 @@
                 <div class="mb-3">
                     <label for="bride" class="form-label">Bride</label>
                     <input type="text" class="form-control @error('bride') is-invalid @enderror" id="bride" name="bride"
-                        required autofocus value="{{ old('bride') }}">
+                        autofocus value="{{ old('bride') }}">
                     @error('bride')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -133,7 +132,7 @@
                 <div class="mb-3">
                     <label for="bride_father" class="form-label">Bride Father</label>
                     <input type="text" class="form-control @error('bride_father') is-invalid @enderror" id="bride_father"
-                        name="bride_father" required autofocus value="{{ old('bride_father') }}">
+                        name="bride_father" autofocus value="{{ old('bride_father') }}">
                     @error('bride_father')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -144,7 +143,7 @@
                 <div class="mb-3">
                     <label for="bride_mother" class="form-label">Bride Mother</label>
                     <input type="text" class="form-control @error('bride_mother') is-invalid @enderror" id="bride_mother"
-                        name="bride_mother" required autofocus value="{{ old('bride_mother') }}">
+                        name="bride_mother" autofocus value="{{ old('bride_mother') }}">
                     @error('bride_mother')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -163,11 +162,18 @@
         marriage.addEventListener("change", showform);
 
         function showform() {
-            console.log(marriage.value);
-            if (marriage.value == 1)
+            if (marriage.value == 1) {
                 $('#marriageform').show();
-            else
+                $('#ceremonial_date_time').required = true;
+                $('#groom').required = true;
+                $('#groom_father').required = true;
+                $('#groom_mother').required = true;
+                $('#bride').required = true;
+                $('#bride_father').required = true;
+                $('#bride_mother').required = true;
+            } else {
                 $('#marriageform').hide();
+            }
         }
     </script>
 @endsection
