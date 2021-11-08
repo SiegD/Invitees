@@ -7,9 +7,11 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\EventTypeController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MyEventController;
 use App\Http\Controllers\registercontroller;
 use App\Models\location;
 use Illuminate\Support\Facades\Route;
+use PHPUnit\TextUI\XmlConfiguration\Group;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,8 +43,13 @@ Route::get('/login', [LoginController::class, 'index'])->name('login')->middlewa
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
 
+Route::get('dashboard/events/checkSlug', [EventController::class, 'checkslug'])->middleware('auth');
 Route::resource('dashboard/events', EventController::class)->middleware('auth');
 
 Route::resource('dashboard/event_type', EventTypeController::class)->middleware('auth');
 Route::resource('dashboard/location', LocationController::class)->middleware('auth');
 Route::resource('dashboard/users', ClientController::class)->middleware('auth');
+
+
+Route::get('/dashboard/undanganku/{slug}', [MyEventController::class, 'show'])->middleware('auth');
+Route::get('/dashboard/undanganku', [MyEventController::class, 'index'])->middleware('auth');

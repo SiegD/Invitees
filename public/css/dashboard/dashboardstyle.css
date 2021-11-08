@@ -49,8 +49,6 @@ body {
     box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
 }
 
-@media (max-width: 767.98px) {}
-
 .sidebar-sticky {
     position: relative;
     top: 0;
@@ -134,8 +132,26 @@ body {
     width: 90vw;
 }
 
+#Event_detail {
+    width: 30vw;
+}
+
 @media (max-width: 767.98px) {
     .container {
         margin-left: auto;
+
     }
+
+    #Event_detail {
+        width: 80vw;
+    }
+}
+
+
+
+
+
+.nav-tabs .nav-item .nav-link {
+    text-decoration: none;
+    color: black;
 }

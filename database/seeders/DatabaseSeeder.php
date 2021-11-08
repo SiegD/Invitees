@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\event_type;
 use App\Models\location;
 use App\Models\User;
 use App\Models\user_status;
@@ -24,6 +25,16 @@ class DatabaseSeeder extends Seeder
         user_status::create([
             'status' => 'guest'
         ]);
+
+        event_type::create([
+            'name' => 'Marriage'
+        ]);
+
+        event_type::create([
+            'name' => 'Birthday'
+        ]);
+
+        location::factory(5)->create();
 
         User::create([
             'name' => 'admin',

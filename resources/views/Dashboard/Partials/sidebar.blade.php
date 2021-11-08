@@ -16,7 +16,8 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link {{ Request::is('dashboard/undanganku') ? 'active' : '' }}"
+                            href="/dashboard/undanganku">
                             <span data-feather="mail"></span>
                             Undanganku
                         </a>
@@ -24,7 +25,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">
                             <span data-feather="upload"></span>
-                            Upload data tamu
+                            Data Tamu
                         </a>
                     </li>
 
@@ -48,28 +49,32 @@
                     </h6>
                     <ul class="nav flex-column mb-2">
                         <li class="nav-item">
-                            <a class="nav-link" href="/dashboard/users">
+                            <a class="nav-link {{ Request::is('dashboard/users*') ? 'active' : '' }}"
+                                href="/dashboard/users">
                                 <span data-feather="settings"></span>
                                 Clients
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="/dashboard/events">
+                            <a class="nav-link {{ Request::is('dashboard/events*') ? 'active' : '' }}"
+                                href="/dashboard/events">
                                 <span data-feather="user"></span>
                                 Events
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="/dashboard/event_type">
+                            <a class="nav-link {{ Request::is('dashboard/event_type*') ? 'active' : '' }}"
+                                href="/dashboard/event_type">
                                 <span data-feather="columns"></span>
                                 Event Type
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="/dashboard/location">
+                            <a class="nav-link {{ Request::is('dashboard/location*') ? 'active' : '' }}"
+                                href="/dashboard/location">
                                 <span data-feather="map-pin"></span>
                                 Venue
                             </a>

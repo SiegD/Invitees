@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class Event extends Model
 {
-    use HasFactory;
+    use HasFactory, Sluggable;
 
     protected $guarded = ['id'];
 
@@ -29,5 +30,19 @@ class Event extends Model
     public function Event_marriage()
     {
         return $this->hasOne(Event_marriage::class);
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'event_slug';
+    }
+
+    public function sluggable(): array
+    {
+        return [
+            'event_slug' => [
+                'source' => 'event_title'
+            ]
+        ];
     }
 }

@@ -18,6 +18,6 @@ class location extends Model
 
     public function event_marriages()
     {
-        return $this->hasMany(Event::class);
+        return $this->hasMany(Event_marriage::class);
     }
 }

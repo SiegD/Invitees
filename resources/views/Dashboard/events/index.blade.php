@@ -17,6 +17,7 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
+                    <th scope="col">Event Name</th>
                     <th scope="col">Client Name</th>
                     <th scope="col">Event Type</th>
                     <th scope="col">Event Location</th>
@@ -29,6 +30,7 @@
                 @foreach ($events as $event)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
+                        <td>{{ $event->event_title }}</td>
                         <td>{{ $event->user->name }}</td>
                         <td>{{ $event->event_type->name }}</td>
                         <td>{{ $event->event_location->venue }}</td>
@@ -37,10 +39,11 @@
                         <td>{{ $event->user->phone }}</td>
                         <td>
 
-                            <a href="/dashboard/events/{{ $event->id }}/edit" class="badge bg-warning">
+                            <a href="/dashboard/events/{{ $event->event_slug }}/edit" class="badge bg-warning">
                                 <span data-feather="edit"></span></a>
 
-                            <form action="/dashboard/events/{{ $event->id }}" method="post" class="d-inline">
+                            <form action="/dashboard/events/{{ $event->event_slug }}" method="post"
+                                class="d-inline">
                                 @method('delete')
                                 @csrf
                                 <button class="badge bg-danger border-0"

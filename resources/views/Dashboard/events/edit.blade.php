@@ -19,9 +19,32 @@ $title = $events['title'];
     </div>
 
     <div class="col-lg-8">
-        <form action="/dashboard/events/{{ $event->id }}" method="Post" class="mb-5" autofocus>
+        <form action="/dashboard/events/{{ $event->event_slug }}" method="Post" class="mb-5" autofocus>
             @method('put')
             @csrf
+
+            <div class="mb-3">
+                <label for="event_title" class="form-label">Event Name</label>
+                <input type="text" class="form-control @error('event_title') is-invalid @enderror" id="event_title"
+                    name="event_title" autofocus required value="{{ old('event_title', $event->event_title) }}">
+                @error('event_title')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+
+            <div class="mb-3">
+                <label for="event_slug" class="form-label">Event Slug</label>
+                <input type="text" class="form-control @error('event_slug') is-invalid @enderror" id="event_slug"
+                    name="event_slug" autofocus required readonly value="{{ old('event_slug', $event->event_slug) }}">
+                @error('event_slug')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+
             <div class="mb-3">
                 <label for="client_id" class="form-label">Client</label>
                 <select class="form-select" name="user_id">
@@ -198,5 +221,16 @@ $title = $events['title'];
             } else
                 marriageformshow.innerHTML = '';
         }
+    </script>
+
+    <script>
+        const event_title = document.querySelector('#event_title');
+        const event_slug = document.querySelector('#event_slug');
+
+        event_title.addEventListener('change', function() {
+            fetch('/dashboard/events/checkSlug?title=' + event_title.value)
+                .then(response => response.json())
+                .then(data => event_slug.value = data.slug)
+        });
     </script>
 @endsection

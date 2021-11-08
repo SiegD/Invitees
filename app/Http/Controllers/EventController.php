@@ -7,6 +7,7 @@ use App\Models\Event_marriage;
 use App\Models\event_type;
 use App\Models\location;
 use App\Models\User;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Http\Request;
 
 use function PHPUnit\Framework\isEmpty;
@@ -53,6 +54,8 @@ class EventController extends Controller
     {
 
         $validatedData = $request->validate([
+            'event_title' => 'required',
+            'event_slug' => 'required|unique:events',
             'event_type_id' => 'required',
             'event_location_id' => 'required',
             'event_date_time' => 'required',
@@ -123,13 +126,18 @@ class EventController extends Controller
      */
     public function update(Request $request, Event $event, Event_marriage $event_marriage)
     {
-
         $rules = [
-            'event_type_id' => 'required|',
+            'event_title' => 'required',
+            'event_type_id' => 'required',
             'event_location_id' => 'required',
             'event_date_time' => 'required|Date',
             'user_id' => 'required',
         ];
+
+
+        if ($request->event_slug != $event->event_slug) {
+            $rules['event_slug'] = 'required|unique:events';
+        }
 
         if ($request->event_type_id == 1) {
             $rulesmarriage = [
@@ -187,5 +195,12 @@ class EventController extends Controller
         Event::destroy($event->id);
 
         return redirect('/dashboard/events')->with('success', 'Event Has been deleted!');
+    }
+
+    public function checkslug(Request $request)
+    {
+        $slug = SlugService::createSlug(Event::class, 'event_slug', $request->title);
+
+        return response()->json(['slug' => $slug]);
     }
 }
