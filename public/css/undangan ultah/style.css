@@ -1,0 +1,340 @@
+@font-face {
+    font-family: "pingwing";
+    src: url("/font/pingwing.ttf");
+}
+
+@font-face {
+    font-family: "Poppins-bold";
+    src: url("/font/Poppins-Bold.ttf");
+}
+
+@font-face {
+    font-family: "Poppins-medium";
+    src: url("/font/Poppins-Medium.ttf");
+}
+
+body {
+    overflow-x: hidden;
+    background-color: #FFE9EE;
+}
+
+.modal-content {
+    background-repeat: no-repeat;
+    background-color: #FFABBE;
+}
+
+@media screen and (min-width: 500px) {
+    .modal-dialog {
+        min-width: 60vw;
+    }
+
+    .modal-header {
+        font-size: calc(6px + 1vw);
+    }
+
+    .modal-header h6 {
+        font-size: calc(10px + 1vw);
+    }
+
+    .modal-header h4 {
+        font-size: calc(36px + 1vw);
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .modal-body .barcode {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin-bottom: 5%;
+    }
+
+    .modal-body .barcode img {
+        width: 100%;
+    }
+
+    .modal-dialog {
+        padding: 2%;
+    }
+
+    .modal-body .data .data-tamu {
+        flex-direction: column;
+        flex-wrap: wrap;
+        text-align: center;
+        font-size: calc(10px + 1vw);
+        width: 100%;
+    }
+
+    .modal-header {
+        font-size: calc(12px + 1vw);
+    }
+
+    .modal-header h6 {
+        font-size: calc(10px + 2vw);
+        margin-top: 5vw;
+    }
+
+    .modal-header h4 {
+        margin-top: 2%;
+        font-size: calc(20px + 1vh);
+        margin-bottom: 2%;
+    }
+}
+
+.modal-body .data {
+    box-sizing: border-box;
+    padding: 5%;
+}
+
+.modal-body .barcode img {
+    width: 80%;
+}
+
+.data-tamu {
+    flex-direction: column;
+    flex-wrap: wrap;
+    text-align: center;
+    font-size: calc(5px + 1vw);
+}
+
+.modal-header h4 {
+    font-family: "pingwing";
+}
+
+.fotoawal {
+    width: 100%;
+    min-height: 30vh;
+    max-height: 140vh;
+    overflow: hidden;
+    padding: 0%;
+    position: relative;
+}
+
+.fotoawal img {
+    width: 100%;
+    height: auto;
+    display: block;
+    z-index: -1;
+    position: absolute;
+}
+
+.client {
+    display: flex;
+    align-items: center;
+    padding-top: 32%;
+    padding-bottom: 40%;
+    flex-direction: column;
+}
+
+.salam {
+    padding: 5%;
+    text-align: center;
+}
+
+.salam .ucapan {
+    background-color: white;
+    padding: 2% 5% 3%;
+    border-radius: 10px;
+    box-shadow: 4px 5px #ffcad7;
+}
+
+.salam .pembuka {
+    font-family: "pingwing";
+    font-size: calc(16px + 3vw);
+    margin-bottom: 2vw;
+    color: #DB6777;
+}
+
+.isi-gl {
+    box-sizing: border-box;
+    border-radius: 10px;
+    min-width: 45%;
+    min-height: 30vh;
+    align-items: center;
+    padding: 0;
+    text-align: center;
+}
+
+.isi-gl .detailacara {
+    flex-wrap: wrap;
+    flex-flow: column;
+    padding-top: 10vw;
+}
+
+.detailacara p {
+    font-size: calc(5px + 2vw);
+    font-family: "Poppins-medium";
+}
+
+.isi-gl .galeri {
+    width: 100%;
+    min-width: 30vw;
+    border-radius: 10px;
+}
+
+@media (max-width: 1200px) {
+    .infoacara {
+        display: flex;
+        justify-content: center;
+        padding: 2%;
+        margin-left: 2%;
+    }
+
+    .isi-gl {
+        width: 100%;
+        margin: 2%;
+    }
+}
+
+.mapacara {
+    text-align: center;
+    padding: 5%;
+}
+
+.bungkusmap {
+    background-color: white;
+    box-shadow: 4px 5px #ffcad7;
+    padding: 2% 5% 3%;
+    border-radius: 10px;
+    font-family: "Poppins-medium";
+}
+
+.covermap {
+    overflow: hidden;
+    padding-bottom: 56.25%;
+    position: relative;
+    height: 0;
+}
+
+.covermap iframe {
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    position: absolute;
+}
+
+.timer {
+    padding: 2%;
+    border-radius: 10px;
+    background-color: white;
+    text-align: center;
+    font-size: calc(12px + 3vw);
+    font-weight: bold;
+    box-shadow: 4px 5px #ffcad7;
+    margin: 5%;
+    font-family: "Poppins-medium";
+}
+
+#demo {
+    font-weight: bold;
+    font-family: 'Poppins-bold';
+}
+
+.rsvp {
+    background-color: white;
+    padding: 5%;
+    margin: 5%;
+    margin-top: 10%;
+    border-radius: 10px;
+    box-shadow: 4px 5px #ffcad7;
+    padding: 2%;
+}
+
+.rsvp-detail {
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: calc(8px + 1vw);
+    padding: 2%;
+}
+
+.rsvp {
+    text-align: center;
+}
+
+.rsvp .form-group {
+    margin-bottom: 2%;
+    text-align: left;
+    padding: 0% 5% 0%;
+}
+
+.form-control {
+    border-radius: 10px;
+}
+
+.buku-tamu {
+    background-color: white;
+    padding: 5%;
+    margin: 5%;
+    margin-top: 10%;
+    border-radius: 10px;
+    box-shadow: 4px 5px #ffcad7;
+    text-align: center;
+}
+
+.buku-tamu form {
+    text-align: left;
+}
+
+.kolomkomen {
+    display: flex;
+    overflow: hidden;
+    padding: 5%;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 2%;
+}
+
+.komen {
+    box-sizing: border-box;
+    overflow: hidden;
+    background-color: #ffffff;
+    border-radius: 10px;
+    font-family: 'Roboto', sans-serif;
+    box-shadow: 4px 5px #ffcad7;
+    text-align: start;
+    padding: 2%;
+}
+
+@media (max-width: 500px) {
+    .komen {
+        width: 90%;
+        padding: 5%;
+    }
+}
+
+.footer {
+    background-color: #FFCAD6;
+    margin-top: 3%;
+    padding: 2%;
+    display: flex;
+    /* flex-wrap: wrap; */
+    overflow: hidden;
+}
+
+.footer .row {
+    justify-content: space-between;
+    padding: 2%;
+}
+
+.logo {
+    min-width: 20vw;
+    padding: 2%;
+    align-self: center;
+}
+
+.logo img {
+    width: 50%;
+    transform: translateX(50%);
+}
+
+.kontak {
+    text-align: center;
+    font-size: calc(10px + 2vw);
+    font-family: 'Roboto', sans-serif;
+}
+
+#bold {
+    font-family: "Poppins-bold";
+}

@@ -129,8 +129,12 @@
                                             class="badge bg-info">
                                             <span data-feather="eye"></span></a>
 
-                                        <a href="undanganku/{{ $event->slug }}" class="badge bg-success">
-                                            <span data-feather="clipboard"></span></a>
+                                        <input type="hidden"
+                                            value="www.invitees.com/undanganku/{{ $events->event_slug }}/{{ $event->slug }}"
+                                            id="link">
+
+                                        <button class="badge bg-success" onclick="myFunction()" style="border : none;">
+                                            <span data-feather="clipboard"></span></button>
 
                                         <a href="/dashboard/event_type/{{ $event->slug }}/edit" class="badge bg-warning">
                                             <span data-feather="edit"></span></a>
@@ -153,7 +157,45 @@
             </div>
 
 
-            <div class="tab-pane fade" id="Utterances" role="tabpanel" aria-labelledby="Utterances-tab">...</div>
+            <div class="tab-pane fade" id="Utterances" role="tabpanel" aria-labelledby="Utterances-tab">
+                <div class="table-responsive col-lg-8 mt-4">
+                    <table class="table table-striped table-sm">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Regards</th>
+                                <th scope="col">Created at</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($events->utterance as $event)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $event->name }}</td>
+                                    <td>{{ $event->regards }}</td>
+                                    <td>{{ $event->created_at }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
+
+    <script>
+        function myFunction() {
+            /* Get the text field */
+            var copyText = document.getElementById("link").value;
+
+            console.log(copyText);
+            /* Copy the text inside the text field */
+            navigator.clipboard.writeText(copyText);
+
+            /* Alert the copied text */
+            alert("Copied the text: " + copyText);
+        }
+    </script>
 @endsection

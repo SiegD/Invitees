@@ -40,15 +40,25 @@
     <?php
     $date_alone = date('d M y', strtotime($events->event_date_time));
     $date_alone2 = date('d M y', strtotime($events->event_marriage->ceremonial_date_time));
+    $date_alone3 = date('Ymd', strtotime($events->event_marriage->ceremonial_date_time));
     $time_alone = date('G:i', strtotime($events->event_date_time));
     $time_alone2 = date('G:i', strtotime($events->event_marriage->ceremonial_date_time));
+    $time_alone3 = date('Gis', strtotime($events->event_marriage->ceremonial_date_time));
     ?>
+
     {{-- Music --}}
     <audio autoPlay loop>
         <source src="/songs/Can You Feel The Love Tonight Cover  FULL AUDIO.mp3" type="audio/mpeg">
     </audio>
 
     {{-- Overlay --}}
+
+    @if (session()->has('success'))
+        <div class="alert alert-success col-lg-8" role="alert">
+            {{ session('success') }}
+        </div>
+    @endif
+
     <div class="modal fade" id="overlay" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -160,7 +170,7 @@
             <p style="color: #DDB373" id="bold">Waktu hingga resepsi</p>
             <p id="demo"></p>
             <a class="btn mb-2" style="background-color: #DDB373; color:white;"
-                href="https://www.google.com/calendar/render?action=TEMPLATE&text=Pernikahan+Gilbert+dan+Anna&dates=20210704T350000Z/20210704T380000Z&details=For+details,+link+here:+http://www.example.com&location=Upperhills+Convention+Hall,+Jl.+Metro+Tj.+Bunga+No.995+,+Mattoangin,+Kec. Mariso,+Kota Makassar,+Sulawesi+Selatan+90224,+ Indonesia&sf=true&output=xml">
+                href="https://www.google.com/calendar/render?action=TEMPLATE&text=Pernikahan+{{ $events->event_marriage->groom }}+dan+{{ $events->event_marriage->bride }}&dates={{ $date_alone3 }}T{{ $time_alone3 }}/{{ $date_alone3 }}T{{ $time_alone3 }}&details=For+details,+link+here:+http://www.example.com&location={{ $events->event_marriage->ceremonial_location->venue }}&sf=true&output=xml">
                 <i class="bi bi-clock-fill"></i> Atur pengingat</a>
         </div>
     </div>
@@ -176,29 +186,44 @@
                     penting sehubungan dengan Protokol Kesehatan untuk penggunaan kapasitas ballroom yang harus
                     dimaksimalkan.
             </div>
-            <form>
+            <form action="/undangan/{{ $events->event_slug }}/{{ $guests->slug }}" method="POST">
+                @csrf
+                <input type="hidden" id="event_id" name="guest_id" value="{{ $guests->id }}">
                 <div class="form-group">
                     <label for="name">Nama</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Nama anda">
+                    <input type="name" class="form-control" id="name" name="name" readonly
+                        value="{{ $guests->name }}">
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1"
-                        placeholder="Name@example.com">
+                    <input type="email" class="form-control @error('email') is-invalid @enderror" id="email"
+                        name="email" placeholder="Name@example.com" required>
+                    @error('email')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <label for="phone_number">No. Telp</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="No. Telp">
+                    <input type="tel" class="form-control @error('phone_number') is-invalid @enderror" id="phone_number"
+                        name="phone_number" placeholder="No. Telp" required>
+                    @error('phone_number')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
                 <div class="form-group">
-                    <label for="confimation">Konfirmasi Kehadiran</label>
-                    <select class="form-control" id="exampleFormControlSelect1">
-                        <option>Saya hadir</option>
-                        <option>Saya tidak dapat hadir</option>
+                    <label for="RSVP">Konfirmasi Kehadiran</label>
+                    <select class="form-control" name="RSVP" id="RSVP">
+                        <option value="1">Saya hadir</option>
+                        <option value="0">Saya tidak dapat hadir</option>
                     </select>
                 </div>
+                <button type="submit" name="action" value="RSVP" class="btn mb-2 mt-2"
+                    style="color: white; background-color:#DDB373;">Kirim</button>
             </form>
-            <a class="btn mb-2 mt-2" href="" style="color: white; background-color:#DDB373;">Kirim</a>
         </div>
     </div>
 
@@ -206,17 +231,19 @@
     <div class="col-sm-12">
         <div class="buku-tamu">
             <h1 id="bold" style="color: #DDB373">Buku Tamu</h1>
-            <form>
+            <form action="/undangan/{{ $events->event_slug }}/{{ $guests->slug }}" method="POST">
+                @csrf
+                <input type="hidden" id="event_id" name="event_id" value="{{ $events->id }}">
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Nama</label>
-                    <input type="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <label for="name" class="form-label">Nama</label>
+                    <input type="name" class="form-control" id="name" name="name">
                 </div>
                 <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Ucapan</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+                    <label for="regards" class="form-label">Ucapan</label>
+                    <textarea class="form-control" id="regards" name="regards" rows="5"></textarea>
                 </div>
                 <div class="btn-holder mt-4 mb-5" style="text-align: center">
-                    <button type="submit" class="btn"
+                    <button type="submit" name="action" value="Regards" class="btn"
                         style="background-color: #DDB373; color:white">Submit</button>
                 </div>
             </form>
@@ -224,36 +251,22 @@
             <!--Komen-->
             <div class="kolomkomen col-lg-12 justify-content-center">
                 <div class="row justify-content-center">
-                    <div class="komen mb-4">
-                        <h4 id="bold" style="color: #DDB373">Name</h4>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam expedita necessitatibus nihil
-                            magnam,
-                            ex
-                            maxime porro. Libero voluptates veritatis nulla?</p>
-                    </div>
-
-                    <div class="komen mb-4">
-                        <h4>Name</h4>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam expedita necessitatibus nihil
-                            magnam,
-                            ex
-                            maxime porro. Libero voluptates veritatis nulla?</p>
-                    </div>
-
-                    <div class="komen">
-                        <h4>Name</h4>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam expedita necessitatibus nihil
-                            magnam,
-                            ex
-                            maxime porro. Libero voluptates veritatis nulla?</p>
-                    </div>
+                    {{-- @dd($utterances) --}}
+                    @if ($utterances->count())
+                        @foreach ($utterances as $utterance)
+                            <div class="komen mb-4">
+                                <h4 id="bold" style="color: #DDB373">{{ $utterance->name }}</h4>
+                                <p>{{ $utterance->regards }}</p>
+                            </div>
+                        @endforeach
+                    @else
+                        <p style="text-align: center">No comment yet</p>
+                    @endif
                 </div>
             </div>
             {{-- pagination --}}
             <div class="d-flex justify-content-center mt-5">
-                {{-- {{ $posts->links() }} --}} <p>
-                    <1>
-                </p>
+                {{ $utterances->links() }}
             </div>
         </div>
     </div>
@@ -316,8 +329,6 @@
         $('#overlay').modal('show');
     });
 </script>
-
-
 
 <script>
     var lati = {!! json_encode($events->event_location->lat, JSON_HEX_TAG) !!}

@@ -37,6 +37,11 @@ class Event extends Model
         return $this->hasMany(guest::class);
     }
 
+    public function utterance()
+    {
+        return $this->hasMany(Utterance::class);
+    }
+
     public function getRouteKeyName()
     {
         return 'event_slug';

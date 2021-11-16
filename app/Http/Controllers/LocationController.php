@@ -42,7 +42,9 @@ class LocationController extends Controller
     {
         $validatedData = $request->validate([
             'venue' => 'required|max:255|unique:locations',
-            'address' => 'required|max:255'
+            'address' => 'required|max:255',
+            'lat' => 'required|integer',
+            'lng' => 'required|integer'
         ]);
 
         location::create($validatedData);
@@ -85,7 +87,9 @@ class LocationController extends Controller
     {
         $rules = [
             'venue' => 'required|max:255|unique:locations',
-            'address' => 'required|max:255'
+            'address' => 'required|max:255',
+            'lat' => 'required|integer',
+            'lng' => 'required|integer'
         ];
 
         $validatedData = $request->validate($rules);

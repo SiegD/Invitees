@@ -30,42 +30,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,300&display=swap" rel="stylesheet">
 
     {{-- My Style --}}
-    <link rel="stylesheet" href="/css/undangan/style.css">
-    <title>Invitees - Pernikahan Gilber & Anna</title>
+    <link rel="stylesheet" href="/css/undangan ultah/style.css">
+    <title>Invitees - {{ $events->event_title }}</title>
 
 
 </head>
 
 <body>
-    <!--Overlay-->
-    {{-- <div class="overlay" onclick="off()" id="overlay">
-        <div class="guest col-sm-8 ">
-            <div class="overlay-salam row-sm-8 justify-content-center">
-                <p>Undangan pernikahan</p>
-                <h1>Gilbert & Anna</h1>
-                <p>5 July | Upperhills Convention Hall | 19.00</p>
-            </div>
+    {{-- @dd($events); --}}
+    <?php
+    $date_alone = date('d M y', strtotime($events->event_date_time));
+    $date_alone2 = date('Ymd', strtotime($events->event_date_time));
+    $time_alone = date('G:i', strtotime($events->event_date_time));
+    $time_alone2 = date('Gis', strtotime($events->event_date_time));
+    ?>
 
-            <div class="overlay-data row">
-                <div class="barcode col-sm-6">
-                    <img src="/image/qrcode.jpeg" alt="">
-                </div>
-                <div class="data col-sm-6">
-                    <p>Kepada Yth.</p>
-                    <h1>Julia W. & Keluarga</h1>
-                    <p>Meja : Amarylis</p>
-                    <p>Berlaku untuk : 2 Orang</p>
-                    <p>Kami mengundang Bapak/Ibu/Saudara/i untuk hadir di acara kami. Mohon Screeenshot halaman ini atau
-                        klik unduh dan tunjukkan saat proses registrasi</p>
-                </div>
-            </div>
-            
-            <div class="button row">
-                <button>Unduh</button>
-                <button onclick="off()">Tutup</button>
-            </div>
+    @if (session()->has('success'))
+        <div class="alert alert-success col-lg-8" role="alert">
+            {{ session('success') }}
         </div>
-    </div> --}}
+    @endif
 
     <div class="modal fade" id="overlay" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
         aria-hidden="true">
@@ -73,9 +57,9 @@
             <div class="modal-content">
 
                 <div class="modal-header justify-content-center flex-column">
-                    <h6 class="modal-title" id="exampleModalLongTitle">Undangan Pernikahan</h6>
-                    <h4 class="modal-title" id="exampleModalLongTitle">Gilber & Anna</h4>
-                    <p>5 July | Upperhills Convention Hall | 19.00</p>
+                    <h6 class="modal-title" id="exampleModalLongTitle">Undangan Ulang Tahun</h6>
+                    <h4 class="modal-title" id="exampleModalLongTitle">{{ $events->event_title }}</h4>
+                    <p>{{ $date_alone }} | {{ $events->event_location->venue }} | {{ $time_alone }} WITA</p>
                 </div>
 
                 <div class="modal-body">
@@ -85,9 +69,9 @@
                         </div>
                         <div class="data-tamu col-6">
                             <p>Kepada Yth.</p>
-                            <h1 class="mb-3">Julia W. & Keluarga</h1>
-                            <p class="mb-0">Meja : Amarylis</p>
-                            <p>Berlaku untuk : 2 Orang</p>
+                            <h1 class="mb-3">{{ $guests->name }} & Keluarga</h1>
+                            <p class="mb-0">Meja : {{ $guests->table_name }}</p>
+                            <p>Berlaku untuk : {{ $guests->total_guest }} Orang</p>
                             <p>Kami mengundang Bapak/Ibu/Saudara/i untuk hadir di acara kami. Mohon Screeenshot halaman
                                 ini atau
                                 klik unduh dan tunjukkan saat proses registrasi</p>
@@ -105,49 +89,27 @@
 
     <!--UPPERBODY-->
     <div class="fotoawal col-sm-12 justify-content-center">
-        <img src="/image/client1.png" alt="">
+        <img src="/image/Bday.jpg" alt="">
         <div class="client">
-            <h1>Gilbert & Anna</h1>
-            <p>5 Juli 2021 | Upperhills Convetion Hall</p>
         </div>
     </div>
 
     <!--UNDANGAN-->
-    <div class="salam col-sm-12">
+    <div class="salam col-sm-12" id="detailacara">
         <div class="ucapan">
-            <p class="pembuka">Dengan kerendahan hati serta dengan ungkapan syukur atas karunia Tuhan, Kami
-                mengundang
-                Bapak/Ibu/Saudara/i
-                untuk
-                berbagi kebahagiaan atas bersatunya putra-putri kami </p>
-            {{-- <hr> --}}
-            <p class="nama-pengantin mt-3">Gilbert Schunger</p>
-            <p>Putra pertama dari Bpk. John Schunger dan Ibu Mariah Utami</p>
-            <i class="love bi bi-suit-heart-fill"></i>
-            <p class="nama-pengantin">Anna Kusuma</p>
-            <p>Putra pertama dari Bpk. Bayu Kusuma dan Ibu Windy Gracia</p>
-        </div>
-    </div>
-
-    {{-- Galeri and events location --}}
-    <div class="col-lg-12">
-        <div class="infoacara row">
-            <div class="isi-gl col-sm-5">
-                <img class="galeri" src="/image/client.jpg" alt="">
-            </div>
-            <div class="isi-gl col-sm-6">
-                <div class="detailacara">
-                    <p class="judul">Pemberkatan Nikah</p>
-                    <p>Senin, 5 Juli 2021</p>
-                    <p>Pukul 15.00 WITA</p>
-                    <p>Gereja Katedral</p>
-                    <p>Jln. Kajaolalido no. 14</p>
-                    <hr>
-                    <p class="judul">Resepsi Pernikahan</p>
-                    <p>Senin, 5 Juli 2021</p>
-                    <p>Pukul 19.00 WITA</p>
-                    <p>Upperhills Convention Hall</p>
-                    <p>Jln. Metro Tj. Bunga no. 995</p>
+            <p class="pembuka mt-2" style="font-weight: bold">{{ $events->event_title }}</p>
+            <div class="infoacara row">
+                <div class="isi-gl col-sm-5">
+                    <img class="galeri" src="/image/Bday 2.png" alt="">
+                </div>
+                <div class="isi-gl col-sm-6">
+                    <div class="detailacara">
+                        <p>{{ $date_alone }}</p>
+                        <p>Pukul {{ $time_alone }} WITA</p>
+                        <hr size="5 px">
+                        <p>{{ $events->event_location->venue }}</p>
+                        <p>{{ $events->event_location->address }}</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -155,13 +117,13 @@
 
     <!--API-->
     {{-- Maps --}}
-    <div class="mapresepsi col-lg-12 justify-content-center">
+    <div class="mapacara col-lg-12 justify-content-center">
         <div class="bungkusmap">
             <h1 class="mb-3" id="bold">Lokasi Acara</h1>
-            <div class="covermap">
-                <iframe
+            <div class="covermap" id="map">
+                {{-- <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3973.656602456615!2d119.39989891527779!3d-5.158833853562916!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dbf1d0dca1cf797%3A0x15a4ebc6aa0744fa!2sUpperHills%20Convention%20Hall!5e0!3m2!1sen!2sid!4v1634818309555!5m2!1sen!2sid"
-                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe> --}} --}}
             </div>
             <a class="btn btn-map mt-4 btn-success" href="https://goo.gl/maps/nPmkjtjKzKY5XvKw6">Lihat di maps</a>
         </div>
@@ -172,7 +134,9 @@
         <div class="timer">
             <p>Waktu hingga resepsi</p>
             <p id="demo"></p>
-            <a class="btn btn-success" href="#"> <i class="bi bi-clock-fill"></i> Atur pengingat</a>
+            <a class="btn btn-success"
+                href="https://www.google.com/calendar/render?action=TEMPLATE&text={{ $events->event_title }}&dates={{ $date_alone2 }}T{{ $time_alone2 }}/{{ $date_alone2 }}T{{ $time_alone2 }}&details=For+details,+link+here:+http://www.example.com&location={{ $events->event_location->venue }}&sf=true&output=xml">
+                <i class="bi bi-clock-fill"></i> Atur pengingat</a>
         </div>
     </div>
 
@@ -187,31 +151,43 @@
                     penting sehubungan dengan Protokol Kesehatan untuk penggunaan kapasitas ballroom yang harus
                     dimaksimalkan.
             </div>
-            <form>
+            <form action="/undangan/{{ $events->event_slug }}/{{ $guests->slug }}" method="POST">
+                @csrf
+                <input type="hidden" id="event_id" name="guest_id" value="{{ $guests->id }}">
                 <div class="form-group">
                     <label for="name">Nama</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1"
-                        placeholder="name@example.com">
+                    <input type="name" class="form-control" id="name" name="name" readonly
+                        value="{{ $guests->name }}">
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1"
-                        placeholder="name@example.com">
+                    <input type="email" class="form-control @error('email') is-invalid @enderror" id="Email"
+                        name="email" placeholder="name@example.com" required>
+                    @error('email')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <label for="phone_number">No. Telp</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1"
-                        placeholder="name@example.com">
+                    <input type="tel" class="form-control @error('phone_number') is-invalid @enderror" id="phone_number"
+                        name="phone_number" placeholder="081234567890" required>
+                    @error('phone_number')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
                 <div class="form-group">
-                    <label for="confimation">Konfirmasi Kehadiran</label>
-                    <select class="form-control" id="exampleFormControlSelect1">
-                        <option>Saya hadir</option>
-                        <option>Saya tidak dapat hadir</option>
+                    <label for="RSVP">Konfirmasi Kehadiran</label>
+                    <select class="form-control" id="RSVP" name="RSVP">
+                        <option value="1">Saya hadir</option>
+                        <option value="0">Saya tidak dapat hadir</option>
                     </select>
                 </div>
             </form>
-            <a class="btn btn-success" href="">Kirim</a>
+            <button type="submit" name="action" value="RSVP" class="btn btn-success">Kirim</button>
         </div>
     </div>
 
@@ -219,50 +195,43 @@
     <div class="col-sm-12">
         <div class="buku-tamu">
             <h1 id="bold">Buku Tamu</h1>
-            <form>
+            <form action="/undangan/{{ $events->event_slug }}/{{ $guests->slug }}" method="POST">
+                @csrf
+                <input type="hidden" id="event_id" name="event_id" value="{{ $events->id }}">
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <label for="name" class="form-label">Nama</label>
+                    <input type="name" class="form-control" id="name" name="name">
                 </div>
                 <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
+                    <label for="regards" class="form-label">Ucapan</label>
+                    <textarea class="form-control" id="regards" name="regards" rows="5"></textarea>
                 </div>
-                <button type="submit" class="btn btn-success">Submit</button>
+                <div class="btn-holder mt-4 mb-5" style="text-align: center">
+                    <button type="submit" name="action" value="Regards" class="btn btn-success">Submit</button>
             </form>
         </div>
-    </div>
 
-    <!--Komen-->
-    <div class="kolomkomen col-lg-12 justify-content-center">
-        <div class="row">
-            <div class="komen mb-4">
-                <h4 id="bold">Name</h4>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam expedita necessitatibus nihil magnam,
-                    ex
-                    maxime porro. Libero voluptates veritatis nulla?</p>
-            </div>
 
-            <div class="komen mb-4">
-                <h4>Name</h4>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam expedita necessitatibus nihil magnam,
-                    ex
-                    maxime porro. Libero voluptates veritatis nulla?</p>
-            </div>
-
-            <div class="komen">
-                <h4>Name</h4>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam expedita necessitatibus nihil magnam,
-                    ex
-                    maxime porro. Libero voluptates veritatis nulla?</p>
+        <!--Komen-->
+        <div class="kolomkomen col-lg-12 justify-content-center">
+            <div class="row justify-content-center">
+                {{-- @dd($utterances) --}}
+                @if ($utterances->count())
+                    @foreach ($utterances as $utterance)
+                        <div class="komen mb-4">
+                            <h4 id="bold">{{ $utterance->name }}</h4>
+                            <p>{{ $utterance->regards }}</p>
+                        </div>
+                    @endforeach
+                @else
+                    <p style="text-align: center">No comment yet</p>
+                @endif
             </div>
         </div>
-    </div>
-
-    <div class="d-flex justify-content-center mt-5">
-        {{-- {{ $posts->links() }} --}} <p>
-            <1>
-        </p>
+        {{-- pagination --}}
+        <div class="d-flex justify-content-center mt-5">
+            {{ $utterances->links() }}
+        </div>
     </div>
 
     <!--Footer-->
@@ -270,7 +239,7 @@
         <div class="col-lg-12">
             <div class="row">
                 <div class="logo col-lg-6 mb-3 ">
-                    <img src="/image/logo.png" alt="">
+                    <img src="/image/logo 2.png" alt="">
                 </div>
 
 
@@ -287,7 +256,8 @@
 
 <script>
     // Set the date we're counting down to
-    var countDownDate = new Date("Nov 11, 2021 15:37:25").getTime();
+    var datetime = {!! json_encode($events->event_date_time, JSON_HEX_TAG) !!}
+    var countDownDate = new Date(datetime).getTime();
 
     // Update the count down every 1 second
     var x = setInterval(function() {
@@ -316,16 +286,41 @@
     }, 1000);
 </script>
 
-<script>
-    function off() {
-        document.getElementById("overlay").style.display = "none";
-    }
-</script>
-
 <script type="text/javascript">
     $(window).on('load', function() {
         $('#overlay').modal('show');
     });
+</script>
+
+<script>
+    var lati = {!! json_encode($events->event_location->lat, JSON_HEX_TAG) !!}
+    var longi = {!! json_encode($events->event_location->lng, JSON_HEX_TAG) !!}
+
+
+    console.log(lati);
+
+    function initMap() {
+
+        var location = {
+            lat: Number(lati),
+            lng: Number(longi)
+        };
+
+
+        var map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 18,
+            center: location,
+        });
+
+        var marker = new google.maps.Marker({
+            position: location,
+            map: map,
+        });
+    }
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvLstOHsnCHV8vFus1dWCHR2npJ58PC-0&callback=initMap" async
+defer>
 </script>
 
 </html>

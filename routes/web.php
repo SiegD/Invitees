@@ -63,3 +63,11 @@ Route::get('dashboard/data-tamu/checkSlug', [GuestController::class, 'checkslug'
 Route::resource('dashboard/data-tamu', GuestController::class)->middleware('auth');
 
 Route::get('undangan/{event_slug}/{slug}', [UndanganController::class, 'show']);
+Route::Post('undangan/{event_slug}/{slug}', [UndanganController::class, 'submit']);
+
+
+Route::get('undanganultah', function () {
+    return view('Undangan.undanganultah', [
+        'title' => 'Undangan Ultah'
+    ]);
+});

@@ -30,6 +30,28 @@
                 @enderror
             </div>
 
+            <div class="mb-3">
+                <label for="lat" class="form-label">Latitude</label>
+                <input type="text" class="form-control @error('lat') is-invalid @enderror" id="lat" name="lat" required
+                    autofocus value="{{ old('lat') }}">
+                @error('latitude')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+
+            <div class="mb-3">
+                <label for="lng" class="form-label">Longitude</label>
+                <input type="text" class="form-control @error('lng') is-invalid @enderror" id="lng" name="lng" required
+                    autofocus value="{{ old('lng') }}">
+                @error('lng')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+
             <button type="submit" class="btn btn-primary">Add Venue</button>
         </form>
     </div>
