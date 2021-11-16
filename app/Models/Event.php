@@ -32,6 +32,11 @@ class Event extends Model
         return $this->hasOne(Event_marriage::class);
     }
 
+    public function guest()
+    {
+        return $this->hasMany(guest::class);
+    }
+
     public function getRouteKeyName()
     {
         return 'event_slug';

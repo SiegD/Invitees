@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Guests extends Migration
+class CreateGuestsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -22,7 +22,8 @@ class Guests extends Migration
             $table->integer('total_guest');
             $table->string('email');
             $table->string('phone_number');
-            $table->boolean('confirmation');
+            $table->boolean('RSVP')->default(0);
+            $table->boolean('confirmation')->default(0);
             $table->timestamps();
 
             $table->foreign('event_id')->references('id')->on('events');
@@ -36,6 +37,6 @@ class Guests extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('guests');
     }
 }

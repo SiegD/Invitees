@@ -19,7 +19,6 @@
 
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="Event_detail" role="tabpanel" aria-labelledby="Event_detail-tab">
-
                 <div class="table-responsive mt-4">
                     <table class="table">
                         <tr>
@@ -43,7 +42,7 @@
                             <th style="font-weight : normal">{{ $events->event_date_time }}</th>
                         </tr>
 
-                        @if ($events->event_type_id == 1){
+                        @if ($events->event_type_id == 1)
                             <tr>
                                 <th>Lokasi Pernikahan</th>
                                 <th style="font-weight : normal">{{ $events->Event_marriage->ceremonial_location->venue }}
@@ -90,7 +89,6 @@
                                 <th style="font-weight : normal">{{ $events->Event_marriage->bride_mother }}
                                 </th>
                             </tr>
-                            }
                         @endif
                     </table>
                 </div>
@@ -98,6 +96,59 @@
             </div>
 
             <div class="tab-pane fade" id="Guests" role="tabpanel" aria-labelledby="Guests-tab">
+
+                <div class="table-responsive col-lg-8 mt-4">
+                    <a href="/dashboard/data-tamu" class="btn btn-warning mb-3">Add guests</a>
+                    <table class="table table-striped table-sm">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Nama</th>
+                                <th scope="col">Nama Meja</th>
+                                <th scope="col">Total Tamu</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Nomor Telepon</th>
+                                <th scope="col">RSVP</th>
+                                <th scope="col">Kehadiran</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($events->guest as $event)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $event->name }}</td>
+                                    <td>{{ $event->table_name }}</td>
+                                    <td>{{ $event->total_guest }}</td>
+                                    <td>{{ $event->email }}</td>
+                                    <td>{{ $event->phone_number }}</td>
+                                    <td>{{ $event->RSVP }}</td>
+                                    <td>{{ $event->confirmation }}</td>
+                                    <td>
+
+                                        <a href="/undangan/{{ $events->event_slug }}/{{ $event->slug }}"
+                                            class="badge bg-info">
+                                            <span data-feather="eye"></span></a>
+
+                                        <a href="undanganku/{{ $event->slug }}" class="badge bg-success">
+                                            <span data-feather="clipboard"></span></a>
+
+                                        <a href="/dashboard/event_type/{{ $event->slug }}/edit" class="badge bg-warning">
+                                            <span data-feather="edit"></span></a>
+
+                                        <form action="/dashboard/event_type/{{ $event->slug }}" method="post"
+                                            class="d-inline">
+                                            @method('delete')
+                                            @csrf
+                                            <button class="badge bg-danger border-0"
+                                                onclick="return confirm('Are you sure to delete this post?')"><span
+                                                    data-feather="trash"></span></button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
 
             </div>
 

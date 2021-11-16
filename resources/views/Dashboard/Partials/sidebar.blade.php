@@ -16,14 +16,15 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ Request::is('dashboard/undanganku') ? 'active' : '' }}"
+                        <a class="nav-link {{ Request::is('dashboard/undanganku*') ? 'active' : '' }}"
                             href="/dashboard/undanganku">
                             <span data-feather="mail"></span>
                             Undanganku
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link {{ Request::is('dashboard/data-tamu*') ? 'active' : '' }}"
+                            href="/dashboard/data-tamu">
                             <span data-feather="upload"></span>
                             Data Tamu
                         </a>
