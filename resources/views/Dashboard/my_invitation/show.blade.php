@@ -1,6 +1,12 @@
 @extends('dashboard.layouts.main')
 @section('container')
 
+    @if (session()->has('success'))
+        <div class="alert alert-success col-lg-8" role="alert">
+            {{ session('success') }}
+        </div>
+    @endif
+
     <div>
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
@@ -136,10 +142,10 @@
                                         <button class="badge bg-success" onclick="myFunction()" style="border : none;">
                                             <span data-feather="clipboard"></span></button>
 
-                                        <a href="/dashboard/event_type/{{ $event->slug }}/edit" class="badge bg-warning">
+                                        <a href="/dashboard/data-tamu/{{ $event->slug }}/edit" class="badge bg-warning">
                                             <span data-feather="edit"></span></a>
 
-                                        <form action="/dashboard/event_type/{{ $event->slug }}" method="post"
+                                        <form action="/dashboard/data-tamu/{{ $event->id }}" method="post"
                                             class="d-inline">
                                             @method('delete')
                                             @csrf

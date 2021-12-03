@@ -31,10 +31,10 @@
             </div>
 
             <div class="mb-3">
-                <label for="lat" class="form-label">Latitude</label>
-                <input type="text" class="form-control @error('lat') is-invalid @enderror" id="lat" name="lat" required
-                    autofocus value="{{ old('lat') }}">
-                @error('latitude')
+                <label for="googleAPI" class="form-label">Google API</label>
+                <textarea class="form-control @error('googleAPI') is-invalid @enderror" id="googleAPI" name="googleAPI"
+                    required autofocus></textarea>
+                @error('googleAPI')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
@@ -42,10 +42,10 @@
             </div>
 
             <div class="mb-3">
-                <label for="lng" class="form-label">Longitude</label>
-                <input type="text" class="form-control @error('lng') is-invalid @enderror" id="lng" name="lng" required
-                    autofocus value="{{ old('lng') }}">
-                @error('lng')
+                <label for="link" class="form-label">Venue link</label>
+                <input type="text" class="form-control @error('link') is-invalid @enderror" id="link" name="link" required
+                    autofocus value="{{ old('link') }}">
+                @error('link')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>

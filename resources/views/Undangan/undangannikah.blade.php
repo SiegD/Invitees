@@ -44,6 +44,8 @@
     $time_alone = date('G:i', strtotime($events->event_date_time));
     $time_alone2 = date('G:i', strtotime($events->event_marriage->ceremonial_date_time));
     $time_alone3 = date('Gis', strtotime($events->event_marriage->ceremonial_date_time));
+    $url = Request::url();
+    $url .= '/confirm=1';
     ?>
 
     {{-- Music --}}
@@ -74,8 +76,8 @@
 
                 <div class="modal-body">
                     <div class="data row justify-content-center">
-                        <div class="barcode col-6">
-                            <img src="/image/qrcode.jpeg" alt="">
+                        <div class="barcode col-6 justify-content-center">
+                            {!! QrCode::size(300)->generate($url) !!}
                         </div>
                         <div class="data-tamu col-6">
                             <p>Kepada Yth.</p>
@@ -120,7 +122,7 @@
                 {{ $events->event_marriage->groom_mother }}</p>
             <i class="love bi bi-suit-heart-fill"></i>
             <p class="nama-pengantin">{{ $events->event_marriage->bride }}</p>
-            <p>Putra pertama dari Bpk. {{ $events->event_marriage->bride_father }} dan
+            <p>Putra pertama dari Bpk. {{ $events->event_marriage->bride_father }} dan Ibu
                 {{ $events->event_marriage->bride_mother }}</p>
         </div>
     </div>
@@ -155,9 +157,8 @@
         <div class="bungkusmap">
             <h1 class="mb-3" id="bold" style="color: #DDB373">Lokasi Acara</h1>
             <div class="covermap" id="map">
-                {{-- <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3973.656602456615!2d119.39989891527779!3d-5.158833853562916!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dbf1d0dca1cf797%3A0x15a4ebc6aa0744fa!2sUpperHills%20Convention%20Hall!5e0!3m2!1sen!2sid!4v1634818309555!5m2!1sen!2sid"
-                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe> --}}
+                <iframe src="{{ $events->event_marriage->ceremonial_location->googleAPI }}" width="600" height="450"
+                    style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
             <a class="btn btn-map mt-3 mb-2" href="https://goo.gl/maps/nPmkjtjKzKY5XvKw6"
                 style="color: white; background-color:#DDB373">Lihat di maps</a>
@@ -230,7 +231,7 @@
     <!--Buku tamu & komen-->
     <div class="col-sm-12">
         <div class="buku-tamu">
-            <h1 id="bold" style="color: #DDB373">Buku Tamu</h1>
+            <h1 id="bold" style="color: #DDB373">Utterances</h1>
             <form action="/undangan/{{ $events->event_slug }}/{{ $guests->slug }}" method="POST">
                 @csrf
                 <input type="hidden" id="event_id" name="event_id" value="{{ $events->id }}">
@@ -260,7 +261,7 @@
                             </div>
                         @endforeach
                     @else
-                        <p style="text-align: center">No comment yet</p>
+                        <p style="text-align: center">No utterance yet</p>
                     @endif
                 </div>
             </div>
@@ -328,37 +329,6 @@
     $(window).on('load', function() {
         $('#overlay').modal('show');
     });
-</script>
-
-<script>
-    var lati = {!! json_encode($events->event_location->lat, JSON_HEX_TAG) !!}
-    var longi = {!! json_encode($events->event_location->lng, JSON_HEX_TAG) !!}
-
-
-    console.log(lati);
-
-    function initMap() {
-
-        var location = {
-            lat: Number(lati),
-            lng: Number(longi)
-        };
-
-
-        var map = new google.maps.Map(document.getElementById("map"), {
-            zoom: 18,
-            center: location,
-        });
-
-        var marker = new google.maps.Marker({
-            position: location,
-            map: map,
-        });
-    }
-</script>
-
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvLstOHsnCHV8vFus1dWCHR2npJ58PC-0&callback=initMap" async
-defer>
 </script>
 
 </html>

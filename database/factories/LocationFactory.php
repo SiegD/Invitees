@@ -24,8 +24,6 @@ class LocationFactory extends Factory
         return [
             'venue' => $this->faker->unique()->company(),
             'address' => $this->faker->streetAddress(),
-            'lat' => $this->faker->latitude(),
-            'lng' => $this->faker->longitude(),
         ];
     }
 }

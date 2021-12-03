@@ -38,6 +38,12 @@
                     </li>
 
                     <li class="nav-item">
+                        <a class="nav-link" href="/dashboard/profile">
+                            <span data-feather="user"></span>
+                            My Profile</a>
+                    </li>
+
+                    <li class="nav-item">
                         <button class="nav-link" data-toggle="modal" data-target="#logoutmodal"><span
                                 data-feather="log-out"></span>
                             Logout</button>
@@ -53,7 +59,7 @@
                             <a class="nav-link {{ Request::is('dashboard/users*') ? 'active' : '' }}"
                                 href="/dashboard/users">
                                 <span data-feather="settings"></span>
-                                Clients
+                                User
                             </a>
                         </li>
 

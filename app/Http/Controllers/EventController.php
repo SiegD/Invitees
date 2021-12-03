@@ -37,7 +37,7 @@ class EventController extends Controller
     public function create()
     {
         return view('Dashboard.events.create', [
-            'clients' => User::all()->where('user_status_id', 2),
+            'clients' => User::all()->where('user_status_id', 3),
             'event_types' => event_type::all(),
             'event_locations' => location::all(),
             'title' => 'Create Event'

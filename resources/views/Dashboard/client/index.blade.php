@@ -18,6 +18,7 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Client name</th>
+                    <th scope="col">Client status</th>
                     <th scope="col">Client email</th>
                     <th scope="col">Client phone</th>
                 </tr>
@@ -27,6 +28,7 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $client->name }}</td>
+                        <td>{{ $client->user_status->status }}</td>
                         <td>{{ $client->email }}</td>
                         <td>{{ $client->phone }}</td>
                         <td>

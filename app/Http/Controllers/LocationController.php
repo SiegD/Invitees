@@ -43,8 +43,8 @@ class LocationController extends Controller
         $validatedData = $request->validate([
             'venue' => 'required|max:255|unique:locations',
             'address' => 'required|max:255',
-            'lat' => 'required|integer',
-            'lng' => 'required|integer'
+            'googleAPI' => 'required|string',
+            'link' => 'required|max:255'
         ]);
 
         location::create($validatedData);
@@ -86,11 +86,16 @@ class LocationController extends Controller
     public function update(Request $request, location $location)
     {
         $rules = [
-            'venue' => 'required|max:255|unique:locations',
             'address' => 'required|max:255',
-            'lat' => 'required|integer',
-            'lng' => 'required|integer'
+            'googleAPI' => 'required|string',
+            'link' => 'required|max:255',
         ];
+
+        if ($request->venue != $location->venue) {
+            $rules['venue'] = 'required|max:255|unique:locations';
+        }
+
+
 
         $validatedData = $request->validate($rules);
 

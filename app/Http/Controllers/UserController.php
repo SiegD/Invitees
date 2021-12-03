@@ -3,12 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Models\user_status;
-use App\Models\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class ClientController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +15,9 @@ class ClientController extends Controller
      */
     public function index()
     {
-        return view('Dashboard.client.index', [
-            'clients' => User::all(),
-            'title' => 'Clients'
+        return view('Dashboard.User.user', [
+            'user' => auth()->user(),
+            'title' => 'My Profile'
         ]);
     }
 
@@ -30,11 +28,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-        return view('Dashboard.client.create', [
-            'title' => 'Add Clients',
-            'user_status' => user_status::all(),
-            'events' => Event::all()
-        ]);
+        //
     }
 
     /**
@@ -45,20 +39,7 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'username' => 'required|max:255|unique:users',
-            'name' => 'required|max:255',
-            'user_status_id' => 'required|integer',
-            'event_regis' => 'integer',
-            'email' => 'required|email:dns|unique:users',
-            'phone' => 'required|max:255',
-            'password' => 'required|min:5|max:255',
-        ]);
-
-        $validatedData['password'] = Hash::make($validatedData['password']);
-
-        user::create($validatedData);
-        return redirect('/dashboard/users')->with('success', 'New Client has been added!');
+        //
     }
 
     /**
@@ -80,12 +61,6 @@ class ClientController extends Controller
      */
     public function edit(User $user)
     {
-        return view('dashboard.client.edit', [
-            'clients' => $user,
-            'title' => 'Edit client',
-            'user_status' => user_status::all(),
-            'events' => Event::all()
-        ]);
     }
 
     /**
@@ -97,11 +72,11 @@ class ClientController extends Controller
      */
     public function update(Request $request, User $user)
     {
+
         $rules = [
             'name' => 'required|max:255',
             'phone' => 'required|max:255',
-            'user_status_id' => 'required|integer',
-            'event_regis' => 'integer'
+            'password' => 'required|min:5|max:255'
         ];
 
         if ($request->username != $user->username) {
@@ -112,13 +87,16 @@ class ClientController extends Controller
             $rules['email'] = 'required|email:dns|unique:users';
         }
 
+        $validateddata = $request->validate($rules);
+        if ($request->password == $request->password_confirmation) {
+            $validateddata['password'] = Hash::make($validateddata['password']);
+        } else {
+            return back()->with('failed', "Password doesn't match");
+        };
 
-        $validatedData = $request->validate($rules);
+        user::where('id', auth()->user()->id)->update($validateddata);
 
-        user::where('id', $user->id)
-            ->update($validatedData);
-
-        return redirect('/dashboard/users')->with('success', 'Client has been Updated!');
+        return redirect('/dashboard')->with('success', 'User data has been Updated!');
     }
 
     /**
@@ -129,8 +107,6 @@ class ClientController extends Controller
      */
     public function destroy(User $user)
     {
-        user::destroy($user->id);
-
-        return redirect('/dashboard/users')->with('success', 'Client Has been deleted!');
+        //
     }
 }

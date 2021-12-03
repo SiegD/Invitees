@@ -42,6 +42,17 @@
                     </div>
 
                     <div class="form-floating">
+                        <input type="telephone" name="phone" class="form-control @error('phone') is-invalid @enderror"
+                            id="phone" placeholder="name@example.com" required value="{{ old('phone') }}">
+                        <label for="phone">Phone Number</label>
+                        @error('phone')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+
+                    <div class="form-floating">
                         <input type="password" name="password"
                             class="form-control rounded-bottom @error('password') is-invalid @enderror" id="password"
                             placeholder="Password" required>

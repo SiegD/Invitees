@@ -11,6 +11,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MyEventController;
 use App\Http\Controllers\registercontroller;
 use App\Http\Controllers\UndanganController;
+use App\Http\Controllers\UserController;
 use App\Models\guest;
 use App\Models\location;
 use Illuminate\Support\Facades\Route;
@@ -55,6 +56,9 @@ Route::resource('dashboard/event_type', EventTypeController::class)->middleware(
 Route::resource('dashboard/location', LocationController::class)->middleware('auth');
 Route::resource('dashboard/users', ClientController::class)->middleware('auth');
 
+Route::get('dashboard/profile', [UserController::class, 'index'])->middleware('auth');
+Route::post('dashboard/profile/{user}', [UserController::class, 'update'])->middleware('auth');
+
 Route::get('/dashboard/undanganku/{slug}', [MyEventController::class, 'show'])->middleware('auth');
 Route::get('/dashboard/undanganku', [MyEventController::class, 'index'])->middleware('auth');
 
@@ -65,6 +69,8 @@ Route::resource('dashboard/data-tamu', GuestController::class)->middleware('auth
 Route::get('undangan/{event_slug}/{slug}', [UndanganController::class, 'show']);
 Route::Post('undangan/{event_slug}/{slug}', [UndanganController::class, 'submit']);
 
+
+Route::get('undangan/{event_slug}/{guest}/confirm={confirm}', [UndanganController::class, 'barcode'])->middleware('auth');
 
 Route::get('undanganultah', function () {
     return view('Undangan.undanganultah', [

@@ -10,7 +10,7 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
-
+                    <th scope="col">Event Title</th>
                     <th scope="col">Event Type</th>
                     <th scope="col">Event Location</th>
                     <th scope="col">Event Date & Time</th>
@@ -23,6 +23,7 @@
                 @foreach ($events as $event)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
+                        <td>{{ $event->event_title }}</td>
                         <td>{{ $event->event_type->name }}</td>
                         <td>{{ $event->event_location->venue }}</td>
                         <td>{{ $event->event_date_time }}</td>

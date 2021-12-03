@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('phone');
             $table->string('password');
             $table->unsignedBigInteger('user_status_id')->default(2);
+            $table->unsignedBigInteger('event-regis')->nullable();
             $table->timestamps();
 
             $table->foreign('user_status_id')->references('id')->on('user_statuses');

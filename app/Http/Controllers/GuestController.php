@@ -21,7 +21,12 @@ class GuestController extends Controller
      */
     public function index()
     {
-        $event = Event::where('user_id', auth()->user()->id)->get();
+        if (auth()->user()->user_status_id === 1) {
+            $event = Event::all();
+        } else {
+            $event = Event::where('user_id', auth()->user()->id)->get();
+        };
+
         return view('dashboard.Guest_data.create', [
             'events' => $event,
             'title' => 'Upload data tamu'
@@ -50,7 +55,7 @@ class GuestController extends Controller
             case 'save':
                 $id = $request->event_id;
                 $validateddata = $request->validate([
-                    'name' => 'required|unique:guests',
+                    'name' => 'required',
                     'slug' => 'required|unique:guests',
                     'table_name' => 'required',
                     'total_guest' => 'required|Integer',
@@ -126,9 +131,12 @@ class GuestController extends Controller
      * @param  \App\Models\guest  $guest
      * @return \Illuminate\Http\Response
      */
-    public function edit(guest $guest)
+    public function edit(guest $guest, $slug)
     {
-        //
+        return view('dashboard.Guest_data.edit', [
+            'title' => 'Edit Guest',
+            'guest' => guest::where('slug', $slug)->get()->first()
+        ]);
     }
 
     /**
@@ -140,7 +148,25 @@ class GuestController extends Controller
      */
     public function update(Request $request, guest $guest)
     {
-        //
+        $rules = [
+            'event_id' => 'required',
+            'name' => 'required',
+            'slug' => 'required|unique:guests',
+            'table_name' => 'required',
+            'total_guest' => 'required|Integer',
+            'email' => 'required|email:dns',
+            'phone_number' => 'required',
+        ];
+
+        $validateddata = $request->validate($rules);
+        $slug = Event::where('id', $request->event_id)->get('event_slug')->first();
+        $event = Event::where('id', $request->event_id)->get()->first();
+
+        guest::where('id', $request->guest_id)->update($validateddata);
+
+
+
+        return redirect('dashboard/data-tamu')->with('success', 'Client has been Updated!');
     }
 
     /**
@@ -149,9 +175,11 @@ class GuestController extends Controller
      * @param  \App\Models\guest  $guest
      * @return \Illuminate\Http\Response
      */
-    public function destroy(guest $guest)
+    public function destroy(guest $guest, $guestid)
     {
-        //
+        guest::where('id', $guestid)->delete();
+
+        return back()->with('success', 'Guest Has been deleted!');
     }
 
     public function checkslug(Request $request)

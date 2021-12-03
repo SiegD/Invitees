@@ -17,8 +17,8 @@ class CreateLocationsTable extends Migration
             $table->id();
             $table->string('venue');
             $table->string('address');
-            $table->string('lat');
-            $table->string('lng');
+            $table->text('googleAPI');
+            $table->string('link');
             $table->timestamps();
         });
     }

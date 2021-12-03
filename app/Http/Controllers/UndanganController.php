@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\guest;
 use App\Models\Utterance;
+use Illuminate\Http\Request;
 
 class UndanganController extends Controller
 {
@@ -61,5 +61,54 @@ class UndanganController extends Controller
 
             return back();
         }
+    }
+
+    public function barcode($event_slug, $guest, $confirm)
+    {
+
+        $status = auth()->user();
+        $event = Event::where('event_slug', $event_slug)->get()->first();
+        // dd($event_slug, $guest, $confirm, $status->event_regis, $event->id);
+
+        if ($status->user_status->status == 'guest') {
+            return redirect('/dashboard')->with('failed', 'You are not a client yet');
+        } else if ($status->user_status->status == 'client') {
+            if ($status->id == $event->user_id) {
+                $validate['confirmation'] = 1;
+                $guest_data = Guest::where('slug', $guest)->first();
+                if ($guest_data != null) {
+                    Guest::where('slug', $guest)->update($validate);
+                    return redirect('/dashboard')->with('success', 'Guest ' . $guest . ' Attendance Confirm');
+                } else {
+                    return redirect('/dashboard')->with('failed', 'Guest ' . $guest . ' Tidak ada');
+                }
+            } else if ($status->id != $event->user_id) {
+                return redirect('/dashboard')->with('failed', 'This is not your event');
+            }
+        } else if ($status->user_status->status == 'registration') {
+            if ($status->event_regis == $event->id) {
+                $validate['confirmation'] = 1;
+                $guest_data = Guest::where('slug', $guest)->first();
+                if ($guest_data != null) {
+                    Guest::where('slug', $guest)->update($validate);
+                    return redirect('/dashboard')->with('success', 'Guest ' . $guest . ' Attendance Confirm');
+                } else {
+                    return redirect('/dashboard')->with('failed', 'Guest ' . $guest . ' Tidak ada');
+                }
+            } else {
+                return redirect('/dashboard')->with('failed', 'This is not your event');
+            }
+        } else if ($status->user_status->status == 'admin') {
+            $validate['confirmation'] = 1;
+            $guest_data = Guest::where('slug', $guest)->first();
+            if ($guest_data != null) {
+                Guest::where('slug', $guest)->update($validate);
+                return redirect('/dashboard')->with('success', 'Guest ' . $guest . ' Attendance Confirm');
+            } else {
+                return redirect('/dashboard')->with('failed', 'Guest ' . $guest . ' Tidak ada');
+            }
+        } else {
+            return redirect('/dashboard')->with('failed', 'You are not a client yet');
+        };
     }
 }
