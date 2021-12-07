@@ -5,7 +5,7 @@
     </div>
 
     <div class="col-lg-8">
-        <form action="/dashboard/events" method="Post" class="mb-5">
+        <form action="/dashboard/events" method="Post" class="mb-5" enctype="multipart/form-data">
             @csrf
 
             <div class="mb-3">
@@ -173,7 +173,30 @@
                         </div>
                     @enderror
                 </div>
+            </div>
 
+            <div class="mb-3">
+                <label for="cover_img" class="form-label">Cover Image</label>
+                <img class="img-preview1 img-fluid mb-3 col-sm-5">
+                <input class="form-control @error('cover_img') is-invalid @enderror" type="file" id="cover_img"
+                    name="cover_img" onchange="previewImage()">
+                @error('cover_img')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+
+            <div class="mb-3">
+                <label for="gal_img" class="form-label">Galery Image</label>
+                <img class="img-preview2 img-fluid mb-3 col-sm-5">
+                <input class="form-control @error('gal_img') is-invalid @enderror" type="file" id="gal_img" name="gal_img"
+                    onchange="previewImage2()">
+                @error('gal_img')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
 
             <button type="submit" class="btn btn-primary">Add Event</button>
@@ -198,8 +221,7 @@
                 $('#marriageform').hide();
             }
         }
-    </script>
-    <script>
+
         const event_title = document.querySelector('#event_title');
         const event_slug = document.querySelector('#event_slug');
 
@@ -208,5 +230,32 @@
                 .then(response => response.json())
                 .then(data => event_slug.value = data.slug)
         });
+
+        function previewImage() {
+            const image = document.querySelector('#cover_img');
+            const imgPreview = document.querySelector('.img-preview1');
+
+            imgPreview.style.display = 'block';
+
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(image.files[0]);
+
+            oFReader.onload = function(oFREvent) {
+                imgPreview.src = oFREvent.target.result;
+            }
+        }
+
+        function previewImage2() {
+            const image2 = document.querySelector('#gal_img');
+            const imgPreview2 = document.querySelector('.img-preview2');
+            imgPreview2.style.display = 'block';
+
+            const oFReader2 = new FileReader();
+            oFReader2.readAsDataURL(image2.files[0]);
+
+            oFReader2.onload = function(oFREvent) {
+                imgPreview2.src = oFREvent.target.result;
+            }
+        }
     </script>
 @endsection

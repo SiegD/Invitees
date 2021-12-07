@@ -53,6 +53,8 @@ class EventController extends Controller
     public function store(Request $request)
     {
 
+        dd($request->file("cover_img")->store($request->event_title, "google"));
+
         $validatedData = $request->validate([
             'event_title' => 'required',
             'event_slug' => 'required|unique:events',
@@ -60,7 +62,13 @@ class EventController extends Controller
             'event_location_id' => 'required',
             'event_date_time' => 'required',
             'user_id' => 'required',
+            'cover_img' => 'image|file',
+            'gal_img' => 'image|file',
         ]);
+
+        if ($request->file('cover_img')) {
+            $validatedData['cover_img'] = $request->file('cover_img')->store($request->event_title, "google");
+        }
 
         $id = Event::create($validatedData)->id;
 
