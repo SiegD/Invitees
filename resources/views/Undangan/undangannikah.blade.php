@@ -100,7 +100,7 @@
 
     <!--UPPERBODY-->
     <div class="fotoawal col-sm-12 justify-content-center">
-        <img src="/image/client1.png" alt="">
+        <img src="/image/client-bg.png" alt="">
         <div class="client">
             <h1>{{ $events->event_marriage->groom }} & {{ $events->event_marriage->bride }}</h1>
             <p> {{ $date_alone2 }}
