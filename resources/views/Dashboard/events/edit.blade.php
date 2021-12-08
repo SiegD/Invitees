@@ -19,7 +19,8 @@ $title = $events['title'];
     </div>
 
     <div class="col-lg-8">
-        <form action="/dashboard/events/{{ $event->event_slug }}" method="Post" class="mb-5" autofocus>
+        <form action="/dashboard/events/{{ $event->event_slug }}" method="Post" class="mb-5" autofocus
+            enctype="multipart/form-data">
             @method('put')
             @csrf
 
@@ -92,6 +93,64 @@ $title = $events['title'];
                     id="event_date_time" name="event_date_time" required autofocus
                     value="{{ date('Y-m-d\TH:i', strtotime($event->event_date_time)) }}">
                 @error('event_date_time')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+
+            <div class="mb-3">
+                <label for="cover_img" class="form-label">Cover Image JPG</label>
+                <input type="hidden" name="oldcover_img" value={{ $event->cover_img }}>
+
+                @if ($event->cover_img)
+                    <img src="{{ $event->cover_img }}" class="img-preview1 img-fluid mb-3 col-sm-5 d-block">
+                @else
+                    <img class="img-preview1 img-fluid mb-3 col-sm-5">
+                @endif
+
+                <input class="form-control @error('cover_img') is-invalid @enderror" type="file" id="cover_img"
+                    name="cover_img" onchange="previewImage()">
+                @error('cover_img')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+
+            <div class="mb-3">
+                <label for="gal_img" class="form-label">Galery Image JPG</label>
+
+                <input type="hidden" name="oldgal_img" value={{ $event->gal_img }}>
+
+                @if ($event->gal_img)
+                    <img src="{{ $event->gal_img }}" class="img-preview2 img-fluid mb-3 col-sm-5 d-block">
+                @else
+                    <img class="img-preview2 img-fluid mb-3 col-sm-5">
+                @endif
+
+                <input class="form-control @error('gal_img') is-invalid @enderror" type="file" id="gal_img" name="gal_img"
+                    onchange="previewImage2()">
+                @error('gal_img')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+
+            <div class="mb-3">
+                <label for="songs" class="form-label">Music/Songs MP3</label>
+
+                <input type="hidden" name="oldsongs" value={{ $event->songs }}>
+
+                @if ($event->songs)
+                    <a href="{{ $event->songs }}" class="fluid mb-3 col-sm-5 d-block"> Link Preview Lagu (Download) </a>
+                @else
+                    <a href=""> No songs</a>
+                @endif
+
+                <input class="form-control @error('songs') is-invalid @enderror" type="file" id="songs" name="songs">
+                @error('songs')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
@@ -232,5 +291,32 @@ $title = $events['title'];
                 .then(response => response.json())
                 .then(data => event_slug.value = data.slug)
         });
+
+        function previewImage() {
+            const image = document.querySelector('#cover_img');
+            const imgPreview = document.querySelector('.img-preview1');
+
+            imgPreview.style.display = 'block';
+
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(image.files[0]);
+
+            oFReader.onload = function(oFREvent) {
+                imgPreview.src = oFREvent.target.result;
+            }
+        }
+
+        function previewImage2() {
+            const image2 = document.querySelector('#gal_img');
+            const imgPreview2 = document.querySelector('.img-preview2');
+            imgPreview2.style.display = 'block';
+
+            const oFReader2 = new FileReader();
+            oFReader2.readAsDataURL(image2.files[0]);
+
+            oFReader2.onload = function(oFREvent) {
+                imgPreview2.src = oFREvent.target.result;
+            }
+        }
     </script>
 @endsection

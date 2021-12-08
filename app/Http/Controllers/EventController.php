@@ -8,6 +8,9 @@ use App\Models\event_type;
 use App\Models\location;
 use App\Models\User;
 use Cviebrock\EloquentSluggable\Services\SlugService;
+use Google\Service\Storage as ServiceStorage;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\File;
 use Illuminate\Http\Request;
 
 use function PHPUnit\Framework\isEmpty;
@@ -52,8 +55,7 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-
-        dd($request->file("cover_img")->store($request->event_title, "google"));
+        $title = $request->event_slug;
 
         $validatedData = $request->validate([
             'event_title' => 'required',
@@ -62,13 +64,40 @@ class EventController extends Controller
             'event_location_id' => 'required',
             'event_date_time' => 'required',
             'user_id' => 'required',
-            'cover_img' => 'image|file',
-            'gal_img' => 'image|file',
+            'cover_img' => 'file|image',
+            'gal_img' => 'file|image',
+            'songs' => 'file|mimes:application/octet-stream,audio/mpeg,mpga,mp3,wav'
         ]);
 
         if ($request->file('cover_img')) {
-            $validatedData['cover_img'] = $request->file('cover_img')->store($request->event_title, "google");
+            Storage::disk("google")->putFileAs("", $request->file("cover_img"), $title . '-cover.jpg');
         }
+
+        if ($request->file('gal_img')) {
+            Storage::disk("google")->putFileAs("", $request->file("gal_img"), $title . '-gallery.jpg');
+        }
+
+        if ($request->file('songs')) {
+            Storage::disk("google")->putFileAs("", $request->file("songs"), $title . '-song.mp3');
+        }
+
+        $files = Storage::disk('google')->allFiles();
+        foreach ($files as $file) {
+            $detail = Storage::disk('google')->getMetadata($file);
+            if ($detail['name'] == $title . '-cover.jpg') {
+                $urlcover = Storage::disk('google')->url($file);
+            }
+            if ($detail['name'] == $title . '-gallery.jpg') {
+                $urlgallery = Storage::disk('google')->url($file);
+            }
+            if ($detail['name'] == $title . '-song.mp3') {
+                $urlsong = Storage::disk('google')->url($file);
+            }
+        }
+
+        $validatedData['cover_img'] = $urlcover;
+        $validatedData['gal_img'] = $urlgallery;
+        $validatedData['songs'] = $urlsong;
 
         $id = Event::create($validatedData)->id;
 
@@ -112,7 +141,7 @@ class EventController extends Controller
     {
         $return = [
             'events' => $event,
-            'clients' => User::all()->where('user_status_id', 2),
+            'clients' => User::all()->where('user_status_id', 3),
             'event_types' => event_type::all(),
             'event_locations' => location::all(),
             'title' => 'Edit event'
@@ -140,12 +169,10 @@ class EventController extends Controller
             'event_location_id' => 'required',
             'event_date_time' => 'required|Date',
             'user_id' => 'required',
+            'cover_img' => 'file|image',
+            'gal_img' => 'file|image',
+            'songs' => 'file|mimes:application/octet-stream,audio/mpeg,mpga,mp3,wav'
         ];
-
-
-        if ($request->event_slug != $event->event_slug) {
-            $rules['event_slug'] = 'required|unique:events';
-        }
 
         if ($request->event_type_id == 1) {
             $rulesmarriage = [
@@ -160,16 +187,85 @@ class EventController extends Controller
             ];
         }
 
+        $oldcoverid = trim($request->oldcover_img, "https://drive.google.com/uc?id=&export=media");
+        $oldgalid = trim($request->oldgal_img, "https://drive.google.com/uc?id=&export=media");
+        $oldsongid = trim($request->oldsongs, "https://drive.google.com/uc?id=&export=media");
+
+        if ($request->event_slug != $event->event_slug) {
+            $rules['event_slug'] = 'required|unique:events';
+
+            $files = Storage::disk('google')->allFiles();
+            foreach ($files as $file) {
+                $detail = Storage::disk('google')->getMetadata($file);
+                if ($detail['name'] == $event->event_slug . '-cover.jpg') {
+                    Storage::disk('google')->rename($file, $request->event_slug . '-cover.jpg');
+                }
+                if ($detail['name'] == $event->event_slug . '-gallery.jpg') {
+                    Storage::disk('google')->rename($file, $request->event_slug . '-gallery.jpg');
+                }
+                if ($detail['name'] == $event->event_slug . '-song.mp3') {
+                    Storage::disk('google')->rename($file, $request->event_slug . '-song.mp3');
+                }
+            }
+        }
+
+        if ($request->file('cover_img')) {
+            if ($request->oldcover_img) {
+                Storage::disk('google')->delete($oldcoverid);
+            }
+            Storage::disk("google")->putFileAs("", $request->file("cover_img"), $request->event_slug . '-cover.jpg');
+        } else {
+            $urlcover = '';
+        }
+
+        if ($request->file('gal_img')) {
+            if ($request->oldgal_img) {
+                Storage::disk('google')->delete($oldgalid);
+            }
+            Storage::disk("google")->putFileAs("", $request->file("gal_img"), $request->event_slug . '-gallery.jpg');
+        } else {
+            $urlgallery = '';
+        }
+
+        if ($request->file('songs')) {
+            if ($request->oldsongs) {
+                Storage::disk('google')->delete($oldsongid);
+            }
+            Storage::disk("google")->putFileAs("", $request->file("songs"), $request->event_slug . '-song.mp3');
+        } else {
+            $urlsong = '';
+        }
+
+        $files = Storage::disk('google')->allFiles();
+        foreach ($files as $file) {
+            $detail = Storage::disk('google')->getMetadata($file);
+            if ($detail['name'] == $request->event_slug . '-cover.jpg') {
+                $urlcover = Storage::disk('google')->url($file);
+            }
+            if ($detail['name'] == $request->event_slug . '-gallery.jpg') {
+                $urlgallery = Storage::disk('google')->url($file);
+            }
+            if ($detail['name'] == $request->event_slug . '-song.mp3') {
+                $urlsong = Storage::disk('google')->url($file);
+            }
+        }
+
         if ($request->event_type_id != $event->event_type_id) {
 
             if ($event->event_type_id == 1) {
                 Event_marriage::destroy($event->event_marriage->id);
                 $validatedData = $request->validate($rules);
+                $validatedData['cover_img'] = $urlcover;
+                $validatedData['gal_img'] = $urlgallery;
+                $validatedData['songs'] = $urlsong;
                 Event::where('id', $event->id)->update($validatedData);
             } else {
 
                 $validatedData = $request->validate($rules);
                 $id = $event->id;
+                $validatedData['cover_img'] = $urlcover;
+                $validatedData['gal_img'] = $urlgallery;
+                $validatedData['songs'] = $urlsong;
                 Event::where('id', $event->id)->update($validatedData);
                 $validatedData = $request->validate($rulesmarriage);
                 $validatedData['event_id'] = $id;
@@ -179,12 +275,18 @@ class EventController extends Controller
             if ($event->event_type_id == 1) {
                 $validatedData = $request->validate($rules);
                 $id = $event->id;
+                $validatedData['cover_img'] = $urlcover;
+                $validatedData['gal_img'] = $urlgallery;
+                $validatedData['songs'] = $urlsong;
                 Event::where('id', $event->id)->update($validatedData);
                 $validatedData = $request->validate($rulesmarriage);
                 $validatedData['event_id'] = $id;
                 Event_marriage::where('id', $event->event_marriage->id)->update($validatedData);
             } else {
                 $validatedData = $request->validate($rules);
+                $validatedData['cover_img'] = $urlcover;
+                $validatedData['gal_img'] = $urlgallery;
+                $validatedData['songs'] = $urlsong;
                 Event::where('id', $event->id)->update($validatedData);
             }
         }
@@ -200,6 +302,13 @@ class EventController extends Controller
      */
     public function destroy(Event $event)
     {
+        $coverid = trim($event->cover_img, "https://drive.google.com/uc?id=&export=media");
+        $galid = trim($event->gal_img, "https://drive.google.com/uc?id=&export=media");
+        $songid = trim($event->songs, "https://drive.google.com/uc?id=&export=media");
+
+        Storage::disk('google')->delete($coverid);
+        Storage::disk('google')->delete($galid);
+        Storage::disk('google')->delete($songid);
         Event::destroy($event->id);
 
         return redirect('/dashboard/events')->with('success', 'Event Has been deleted!');

@@ -26,7 +26,7 @@ class CreateGuestsTable extends Migration
             $table->boolean('confirmation')->default(0);
             $table->timestamps();
 
-            $table->foreign('event_id')->references('id')->on('events');
+            $table->foreign('event_id')->references('id')->on('events')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

@@ -23,6 +23,7 @@ class CreateEventsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('cover_img')->nullable();
             $table->string('gal_img')->nullable();
+            $table->string('songs')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');

@@ -43,6 +43,16 @@
     $date_alone2 = date('Ymd', strtotime($events->event_date_time));
     $time_alone = date('G:i', strtotime($events->event_date_time));
     $time_alone2 = date('Gis', strtotime($events->event_date_time));
+    $url = Request::url();
+    $url .= '/confirm=1';
+    
+    if ($events->cover_img == '') {
+        $events->cover_img = 'https://source.unsplash.com/1920x1080?birthday';
+    }
+    
+    if ($events->gal_img == '') {
+        $events->gal_img = 'https://source.unsplash.com/720x1280/?birthday';
+    }
     ?>
 
     @if (session()->has('success'))
@@ -50,6 +60,12 @@
             {{ session('success') }}
         </div>
     @endif
+
+    {{-- Music --}}
+    <audio autoPlay loop>
+        <source src="{{ $events->songs }}" type="audio/mpeg">
+    </audio>
+
 
     <div class="modal fade" id="overlay" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
         aria-hidden="true">
@@ -64,8 +80,8 @@
 
                 <div class="modal-body">
                     <div class="data row justify-content-center">
-                        <div class="barcode col-6">
-                            <img src="/image/qrcode.jpeg" alt="">
+                        <div class="barcode col-6 justify-content-center">
+                            {!! QrCode::size(300)->generate($url) !!}
                         </div>
                         <div class="data-tamu col-6">
                             <p>Kepada Yth.</p>
@@ -89,7 +105,7 @@
 
     <!--UPPERBODY-->
     <div class="fotoawal col-sm-12 justify-content-center">
-        <img src="/image/Bday.jpg" alt="">
+        <img src="{{ $events->cover_img }}" alt="">
         <div class="client">
         </div>
     </div>
@@ -100,7 +116,7 @@
             <p class="pembuka mt-2" style="font-weight: bold">{{ $events->event_title }}</p>
             <div class="infoacara row">
                 <div class="isi-gl col-sm-5">
-                    <img class="galeri" src="/image/Bday 2.png" alt="">
+                    <img class="galeri" src="{{ $events->gal_img }}" alt="" style="size: 100%">
                 </div>
                 <div class="isi-gl col-sm-6">
                     <div class="detailacara">
@@ -121,11 +137,10 @@
         <div class="bungkusmap">
             <h1 class="mb-3" id="bold">Lokasi Acara</h1>
             <div class="covermap" id="map">
-                {{-- <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3973.656602456615!2d119.39989891527779!3d-5.158833853562916!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dbf1d0dca1cf797%3A0x15a4ebc6aa0744fa!2sUpperHills%20Convention%20Hall!5e0!3m2!1sen!2sid!4v1634818309555!5m2!1sen!2sid"
-                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe> --}} --}}
+                <iframe src="{{ $events->event_location->googleAPI }}" width="600" height="450" style="border:0;"
+                    allowfullscreen="" loading="lazy"></iframe>
             </div>
-            <a class="btn btn-map mt-4 btn-success" href="https://goo.gl/maps/nPmkjtjKzKY5XvKw6">Lihat di maps</a>
+            <a class="btn btn-map mt-4 btn-success" href="{{ $events->event_location->link }}">Lihat di maps</a>
         </div>
     </div>
 
@@ -172,7 +187,7 @@
                 <div class="form-group">
                     <label for="phone_number">No. Telp</label>
                     <input type="tel" class="form-control @error('phone_number') is-invalid @enderror" id="phone_number"
-                        name="phone_number" placeholder="081234567890" required>
+                        name="phone_number" placeholder="0821-XXXX-XXXX" required>
                     @error('phone_number')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -186,8 +201,8 @@
                         <option value="0">Saya tidak dapat hadir</option>
                     </select>
                 </div>
+                <button type="submit" name="action" value="RSVP" class="btn btn-success">Kirim</button>
             </form>
-            <button type="submit" name="action" value="RSVP" class="btn btn-success">Kirim</button>
         </div>
     </div>
 
@@ -290,37 +305,6 @@
     $(window).on('load', function() {
         $('#overlay').modal('show');
     });
-</script>
-
-<script>
-    var lati = {!! json_encode($events->event_location->lat, JSON_HEX_TAG) !!}
-    var longi = {!! json_encode($events->event_location->lng, JSON_HEX_TAG) !!}
-
-
-    console.log(lati);
-
-    function initMap() {
-
-        var location = {
-            lat: Number(lati),
-            lng: Number(longi)
-        };
-
-
-        var map = new google.maps.Map(document.getElementById("map"), {
-            zoom: 18,
-            center: location,
-        });
-
-        var marker = new google.maps.Marker({
-            position: location,
-            map: map,
-        });
-    }
-</script>
-
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvLstOHsnCHV8vFus1dWCHR2npJ58PC-0&callback=initMap" async
-defer>
 </script>
 
 </html>

@@ -46,11 +46,19 @@
     $time_alone3 = date('Gis', strtotime($events->event_marriage->ceremonial_date_time));
     $url = Request::url();
     $url .= '/confirm=1';
+    
+    if ($events->cover_img == '') {
+        $events->cover_img = 'https://source.unsplash.com/1920x1080?marriage';
+    }
+    
+    if ($events->gal_img == '') {
+        $events->gal_img = 'https://source.unsplash.com/720x1280/?marriage';
+    }
     ?>
 
     {{-- Music --}}
     <audio autoPlay loop>
-        <source src="/songs/Can You Feel The Love Tonight Cover  FULL AUDIO.mp3" type="audio/mpeg">
+        <source src="{{ $events->songs }}" type="audio/mpeg">
     </audio>
 
     {{-- Overlay --}}
@@ -100,7 +108,7 @@
 
     <!--UPPERBODY-->
     <div class="fotoawal col-sm-12 justify-content-center">
-        <img src="/image/client-bg.png" alt="">
+        <img src="{{ $events->cover_img }}" alt="">
         <div class="client">
             <h1>{{ $events->event_marriage->groom }} & {{ $events->event_marriage->bride }}</h1>
             <p> {{ $date_alone2 }}
@@ -131,7 +139,7 @@
     <div class="col-lg-12" style="padding: 2%">
         <div class="infoacara row">
             <div class="isi-gl col-sm-5">
-                <img class="galeri" src="/image/client.jpg" alt="">
+                <img class="galeri" src="{{ $events->gal_img }}" alt="" style="size: 100%">
             </div>
             <div class="isi-gl col-sm-6">
                 <div class="detailacara">
@@ -160,7 +168,7 @@
                 <iframe src="{{ $events->event_marriage->ceremonial_location->googleAPI }}" width="600" height="450"
                     style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
-            <a class="btn btn-map mt-3 mb-2" href="https://goo.gl/maps/nPmkjtjKzKY5XvKw6"
+            <a class="btn btn-map mt-3 mb-2" href="{{ $events->event_marriage->ceremonial_location->link }}"
                 style="color: white; background-color:#DDB373">Lihat di maps</a>
         </div>
     </div>

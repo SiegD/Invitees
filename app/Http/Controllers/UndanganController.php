@@ -12,21 +12,25 @@ class UndanganController extends Controller
     public function show($event_slug, $slug)
     {
         $events = event::where('event_slug', $event_slug)->get()->first();
-        $id = $events->id;
-        $guests = guest::where('slug', $slug)->get()->first();
+        if ($events != null) {
+            $id = $events->id;
+            $guests = guest::where('slug', $slug)->get()->first();
 
-        if ($events->event_type_id == 1) {
-            return view('Undangan.undangannikah', [
-                'events' => $events,
-                'guests' => $guests,
-                'utterances' => Utterance::latest()->where('event_id', $id)->paginate(5)
-            ]);
+            if ($events->event_type_id == 1) {
+                return view('Undangan.undangannikah', [
+                    'events' => $events,
+                    'guests' => $guests,
+                    'utterances' => Utterance::latest()->where('event_id', $id)->paginate(5)
+                ]);
+            } else {
+                return view('Undangan.undanganultah', [
+                    'events' => $events,
+                    'guests' => $guests,
+                    'utterances' => Utterance::latest()->where('event_id', $id)->paginate(5)
+                ]);
+            }
         } else {
-            return view('Undangan.undanganultah', [
-                'events' => $events,
-                'guests' => $guests,
-                'utterances' => Utterance::latest()->where('event_id', $id)->paginate(5)
-            ]);
+            return redirect('/home');
         }
     }
 

@@ -28,19 +28,23 @@ class MyEventController extends Controller
     {
         $event = Event::where('event_slug', $slug)->get()->first();
 
-        if (auth()->user()->id == $event->user_id or auth()->user()->user_status_id == 1) {
-            return view('dashboard.my_invitation.show', [
-                'events' => $event,
-                'title' => $event['event_title']
-            ]);
-        } else if (auth()->user()->user_status_id == 4) {
-            $event = Event::where('id', auth()->user()->event_regis)->get()->first();
-            return view('dashboard.my_invitation.show', [
-                'events' => $event,
-                'title' => $event['event_title']
-            ]);
+        if ($event != null) {
+            if (auth()->user()->id == $event->user_id or auth()->user()->user_status_id == 1) {
+                return view('dashboard.my_invitation.show', [
+                    'events' => $event,
+                    'title' => $event['event_title']
+                ]);
+            } else if (auth()->user()->user_status_id == 4) {
+                $event = Event::where('id', auth()->user()->event_regis)->get()->first();
+                return view('dashboard.my_invitation.show', [
+                    'events' => $event,
+                    'title' => $event['event_title']
+                ]);
+            } else {
+                return redirect('dashboard/undanganku');
+            };
         } else {
-            return redirect('dashboard/undanganku');
-        };
+            return redirect('/dashboard');
+        }
     }
 }

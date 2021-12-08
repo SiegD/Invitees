@@ -176,7 +176,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="cover_img" class="form-label">Cover Image</label>
+                <label for="cover_img" class="form-label">Cover Image JPG</label>
                 <img class="img-preview1 img-fluid mb-3 col-sm-5">
                 <input class="form-control @error('cover_img') is-invalid @enderror" type="file" id="cover_img"
                     name="cover_img" onchange="previewImage()">
@@ -188,11 +188,21 @@
             </div>
 
             <div class="mb-3">
-                <label for="gal_img" class="form-label">Galery Image</label>
+                <label for="gal_img" class="form-label">Galery Image JPG</label>
                 <img class="img-preview2 img-fluid mb-3 col-sm-5">
                 <input class="form-control @error('gal_img') is-invalid @enderror" type="file" id="gal_img" name="gal_img"
                     onchange="previewImage2()">
                 @error('gal_img')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+
+            <div class="mb-3">
+                <label for="songs" class="form-label">Music/Songs MP3</label>
+                <input class="form-control @error('songs') is-invalid @enderror" type="file" id="songs" name="songs">
+                @error('songs')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
