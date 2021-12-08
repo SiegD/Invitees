@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
 use app\Models\User;
-use Illuminate\support\facades\Gate;
+use Illuminate\Support\Facades\Gate;
 
 class RouteServiceProvider extends ServiceProvider
 {
